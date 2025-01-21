@@ -3,7 +3,8 @@
 size_t	count_points(char *s, char c)
 {
 	size_t	nwords;
-
+    (void)c;
+    
 	nwords = 0;
 	while (*s && *s != '\n')
 	{
