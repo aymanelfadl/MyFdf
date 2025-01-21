@@ -9,12 +9,12 @@ size_t	count_points(char *s, char c)
 	{
 		while (ft_isspace(*s))
 			s++;
-		if (*s != '\0' && *s != '\n')
-		{
-			nwords++;
-			while (!ft_isspace(*s))
-				s++;
-		}
+        if (*s && *s != '\n')
+        {
+            nwords++;
+            while (*s && !ft_isspace(*s) && *s != '\n')
+                s++;
+        }
 	}
 	return (nwords);
 }
@@ -30,7 +30,6 @@ int	ft_isspace(char c)
 int valide_line(char *str)
 {
 	int i = 0;
-	int is_there_a_color = 0;
 	while (str[i])
 	{
 		while (ft_isspace(str[i]))

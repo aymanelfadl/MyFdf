@@ -2,48 +2,52 @@
 
 void	allocate_points(t_vars *var)
 {
-	t_point **points;
 	int i;
 
 	i = 0;
-	points = malloc((sizeof(t_point *) * var->map.map_height) + 1);
-	if (!points)
-		return ;
+	var->map.map_points = malloc(sizeof(t_point *) * var->map.map_height);
+	if (!var->map.map_points)
+	{
+		perror("Error allocating map points");
+		exit(EXIT_FAILURE);
+	}
 	while (i < var->map.map_height)
 	{
-		points[i] = malloc((sizeof(t_point) * var->map.map_width) + 1);
-		if (!points[i])
+		var->map.map_points[i] = malloc(sizeof(t_point) * var->map.map_width);
+		if (!var->map.map_points[i])
 		{
-			while (i >= 0)
-				free(points[i--]);
-			return ;
+			while (--i >= 0)
+				free(var->map.map_points[i]);
+			free(var->map.map_points);
+			perror("Error allocating map row");
+			exit(EXIT_FAILURE);
 		}
 		i++;
 	}
-	var->map.map_points = points;
 }
 
-void map_dimension(t_vars *var)
+void	map_dimension(t_vars *var)
 {
-	int height;
-	int max;
-	char *line;
-	int fd;
+	char	*line;
+	int		fd;
+	int		max_width;
 
-    fd = open(var->map.map_name, O_RDONLY);
-    if (fd < 0)
-        perror("Err In map_dimension_func:");
-    var->map.map_height = 0;
+	fd = open(var->map.map_name, O_RDONLY);
+	if (fd < 0)
+		perror("Error opening file in map_dimension");
+
+	var->map.map_height = 0;
 	var->map.map_width = 0;
-    line = get_next_line(fd);
+
+	line = get_next_line(fd);
 	while (line)
 	{
 		if (valide_line(line))
 		{
-			max = (int)count_points(line, ' ');
-			if (var->map.map_width < max)
-				var->map.map_width = max;
-	        var->map.map_height++;
+			max_width = count_points(line, ' ');
+			if (max_width > var->map.map_width)
+				var->map.map_width = max_width; 
+			var->map.map_height++;
 		}
 		free(line);
 		line = get_next_line(fd);
@@ -51,73 +55,50 @@ void map_dimension(t_vars *var)
 	close(fd);
 }
 
-void	add_points(t_vars *var, char *line)	
+void	add_points(t_vars *var, char *line, int i)
 {
-	static	int	i; 
-	static int j;
-	char **points;
+	int		j;
+	char	**points;
 
-
+	j = 0;
 	points = ft_split(line, ' ');
 	if (!points)
 		return ;
-	while (j < var->map.map_width && points[j])
+	while (points[j] && j < var->map.map_width)
 	{
 		var->map.map_points[i][j].x = i;
 		var->map.map_points[i][j].y = j;
-		var->map.map_points[i][j].z = ft_atoi(points[j]);
+		var->map.map_points[i][j].z = to_number(points[j]);
 		var->map.map_points[i][j].color = DEFAULT_COLOR;
+		free(points[j]);
 		j++;
 	}
-	i++;
-}
-
-void add_points_with_color(t_vars *var, char *line)
-{
-
-	static	int	i; 
-	static int j;
-	char **points;
-	char **colors;
-
-	points = ft_split(line, ' ');
-	if (!points)
-		return ;
-	while (j < var->map.map_width && points[j])
-	{
-		colors = ft_split(points[i], ',');
-		if (!colors)
-			return ;
-		var->map.map_points[i][j].x = i;
-		var->map.map_points[i][j].y = j;
-		var->map.map_points[i][j].z = ft_atoi(colors[0]);
-		if (colors[0])
-			var->map.map_points[i][j].color = colors[0][1];
-		else
-			var->map.map_points[i][j].color = DEFAULT_COLOR;
-		j++;
-	}
-	i++;
+	free(points);
 }
 
 void	set_points(t_vars *var)
 {
-	int fd;
-	char *line;
-	
-	allocate_points(var);
-    fd = open(var->map.map_name, O_RDONLY);
-    if (fd < 0)
-        perror("Err In set_points_func");
+	int		fd;
+	char	*line;
+	int		i;
+
+	i = 0;
+	allocate_points(var); 
+
+	fd = open(var->map.map_name, O_RDONLY);
+	if (fd < 0)
+		perror("Error opening file in set_points");
+
 	line = get_next_line(fd);
 	while (line)
 	{
-		// if (valide_line(line) == 1)
-			add_points(var,line);
-		// else if (valide_line(line) == 2)
-		// 	add_points_with_color(var, line);
+		if (valide_line(line))
+		{
+			add_points(var, line, i);
+			i++;
+		}
 		free(line);
-    	line = get_next_line(fd);
+		line = get_next_line(fd);
 	}
 	close(fd);
 }

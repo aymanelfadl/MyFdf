@@ -81,3 +81,21 @@ int	ft_atoi_base(char *str, char *base)
 		return (-res);
 	return (res);
 }
+
+int to_number(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (ft_isspace(str[i]) || ft_isdigit(str[i]))
+			i++;
+		else
+		{
+			ft_printf("Not A valid Map.");
+			exit(EXIT_FAILURE);
+		}
+	}
+	return (ft_atoi(str));
+}

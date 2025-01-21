@@ -23,7 +23,7 @@
 
 
 #ifndef DEFAULT_COLOR
-    #define DEFAULT_COLOR 0xFFFFFFF
+    #define DEFAULT_COLOR 0xFFFFFF
 #endif
 
 /*
@@ -68,6 +68,7 @@ void	allocate_points(t_vars *var);
 size_t  count_points(char *s, char c);
 int     valide_line(char *str);
 int     ft_atoi_base(char *str, char *base);
+int to_number(char *str);
 
 
 // /*
