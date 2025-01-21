@@ -22,7 +22,9 @@
 # include <math.h>
 
 
-
+#ifndef DEFAULT_COLOR
+    #define DEFAULT_COLOR 0xFFFFFFF
+#endif
 
 /*
     point presentation:
@@ -59,7 +61,13 @@ typedef struct  s_vars
 } t_vars;
 
 /* Parsing map Functions */
-void map_dimension(t_vars *var);
+void    map_dimension(t_vars *var);
+void    set_points(t_vars *var);
+int     ft_isspace(char c);
+void	allocate_points(t_vars *var);
+size_t  count_points(char *s, char c);
+int     valide_line(char *str);
+int     ft_atoi_base(char *str, char *base);
 
 
 // /*
