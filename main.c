@@ -1,38 +1,7 @@
-#include "minilibx-linux/mlx.h"
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
-#include <math.h>
-#include <stdlib.h>
+
+#include "fdf.h"
 
 
-/*
-    image presentation:
-
-*/
-typedef struct	s_img {
-	void	*img;  // mlx_new_image(mlx_connection, width, height)
-	char	*addr; // img.addr now points to the start of your image data like this:
-                    // [Byte1][Byte2][Byte3][Byte4][Byte5][Byte6]...
-                    //  ^ img.addr points here
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-} t_img;
-
-/*
-    point presentation:
-
-*/
-
-typedef struct point
-{
-    int x;
-    int y;
-    int z;
-    int color;
-
-} t_point;
 
 
 void ft_put_pixel(t_img *img, int x, int y, int color)
