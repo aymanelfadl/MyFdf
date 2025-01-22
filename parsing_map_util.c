@@ -87,7 +87,7 @@ int to_number(char *str)
 	int i;
 
 	i = 0;
-	while (str[i])
+	while (str[i] && str[i] != '\n')
 	{
 		if (ft_isspace(str[i]) || ft_isdigit(str[i]))
 			i++;

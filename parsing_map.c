@@ -1,5 +1,14 @@
 #include "fdf.h"
 
+
+// void ft_free(t_vars *vars)
+// {
+
+// 	if (&vars->map && vars->map.map_points)
+// 		free
+// }
+
+
 void	allocate_points(t_vars *var)
 {
 	int i;
@@ -34,7 +43,10 @@ void	map_dimension(t_vars *var)
 
 	fd = open(var->map.map_name, O_RDONLY);
 	if (fd < 0)
+	{
 		perror("Error opening file in map_dimension");
+		exit(EXIT_FAILURE);
+	}
 
 	var->map.map_height = 0;
 	var->map.map_width = 0;
@@ -42,7 +54,7 @@ void	map_dimension(t_vars *var)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (valide_line(line))
+		if (line[0] && valide_line(line))
 		{
 			max_width = count_points(line, ' ');
 			if (max_width > var->map.map_width)
@@ -61,7 +73,7 @@ void	add_points(t_vars *var, char *line, int i)
 	char	**points;
 
 	j = 0;
-	points = ft_split(line, ' ');
+	points = my_split(line, ' ');
 	if (!points)
 		return ;
 	while (points[j] && j < var->map.map_width)
@@ -87,8 +99,10 @@ void	set_points(t_vars *var)
 
 	fd = open(var->map.map_name, O_RDONLY);
 	if (fd < 0)
+	{
 		perror("Error opening file in set_points");
-
+		exit(EXIT_FAILURE);
+	}
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -99,6 +113,7 @@ void	set_points(t_vars *var)
 		}
 		free(line);
 		line = get_next_line(fd);
+		ft_printf("line::%s",line);
 	}
 	close(fd);
 }

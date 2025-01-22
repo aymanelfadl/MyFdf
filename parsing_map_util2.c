@@ -3,22 +3,22 @@
 size_t	count_points(char *s, char c)
 {
 	size_t	nwords;
-    (void)c;
-    
+
 	nwords = 0;
 	while (*s && *s != '\n')
 	{
-		while (ft_isspace(*s))
+		while (*s == c) 
 			s++;
-        if (*s && *s != '\n')
-        {
-            nwords++;
-            while (*s && !ft_isspace(*s) && *s != '\n')
-                s++;
-        }
+		if (*s && *s != '\n')
+		{
+			nwords++;
+			while (*s && *s != c && *s != '\n')
+				s++;
+		}
 	}
 	return (nwords);
 }
+
 
 int	ft_isspace(char c)
 {
@@ -30,15 +30,17 @@ int	ft_isspace(char c)
 
 int valide_line(char *str)
 {
-	int i = 0;
-	while (str[i])
+	int i;
+	
+	i = 0;
+	while (str[i] && str[i] != '\n')
 	{
 		while (ft_isspace(str[i]))
 			i++;
-		if (ft_isdigit(str[i]) || *ft_strchr("xabcdef,XABCDEF", str[i]))
+		if (ft_isdigit(str[i]) || ft_strchr("xabcdef,XABCDEF", str[i]))
 		{
 			i++;
-			break ;
+			continue;
 		}
 		return (0);
 	}

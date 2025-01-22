@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     for(int i = 0 ; i < my_var.map.map_height; i++)
     { 
         for(int j = 0 ; j < my_var.map.map_width; j++)
-            ft_printf("[x:%d, y:%d, z:%d, c::%x]    ",my_var.map.map_points[i][j].x,
+            ft_printf("[x:%d, y:%d, z:%d, c::%x]    ", my_var.map.map_points[i][j].x,
                                                   my_var.map.map_points[i][j].y,
                                                   my_var.map.map_points[i][j].z,
                                                   my_var.map.map_points[i][j].color);
