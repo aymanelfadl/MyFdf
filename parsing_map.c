@@ -1,13 +1,22 @@
 #include "fdf.h"
 
 
-// void ft_free(t_vars *vars)
-// {
+void ft_free_points(t_vars *vars)
+{
+    int i;
 
-// 	if (&vars->map && vars->map.map_points)
-// 		free
-// }
-
+    if (vars->map.map_points)
+    {
+        i = 0;
+        while (i < vars->map.map_height)
+        {
+            if (vars->map.map_points[i])
+                free(vars->map.map_points[i]);
+            i++;
+        }
+        free(vars->map.map_points);
+    }
+}
 
 void	allocate_points(t_vars *var)
 {
@@ -28,6 +37,7 @@ void	allocate_points(t_vars *var)
 			while (--i >= 0)
 				free(var->map.map_points[i]);
 			free(var->map.map_points);
+			var->map.map_points = NULL;
 			perror("Error allocating map row");
 			exit(EXIT_FAILURE);
 		}
