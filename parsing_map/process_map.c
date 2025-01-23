@@ -33,7 +33,7 @@ int	valid_line(char *line)
 		*n_line = '\0';
 	i = 0;
 	valid = 0;
-	while (line[i])
+	while (line[i++])
 	{
 		while (ft_isspace(line[i]) || line[i] == '-')
 			i++;
@@ -42,7 +42,6 @@ int	valid_line(char *line)
 		if ((ft_isdigit(line[i]) || ft_strchr("xabcdef,XABCDEF", line[i])))
 		{
 			valid = 1;
-			i++;
 			continue;
 		}
 		valid = 0;
