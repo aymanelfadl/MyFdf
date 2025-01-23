@@ -5,7 +5,7 @@ TARGET = fdf
 
 LIBFTDIR = libft
 GETNEXTLINEDIR = getNextLine
-SRCDIRS = parsing_map
+SRCDIRS = parsing_map mini-garbage-collector
 
 SRCS = $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.c))
 OBJS = $(SRCS:.c=.o)

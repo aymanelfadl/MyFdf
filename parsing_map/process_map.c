@@ -1,5 +1,18 @@
 #include "../fdf.h"
 
+void	ft_gnl_err(int fd, char *line, char *str)
+{
+	free(line);
+	line = get_next_line(fd);
+	while(line)
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
+	ft_printf(str);
+	exit(EXIT_FAILURE);
+}
+
 int	ft_isspace(char c)
 {
 	if (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r'
@@ -12,30 +25,30 @@ int	valid_line(char *line)
 {
 	char	*n_line;
 	int		i;
+	int		valid;
 
 	n_line = line;
 	n_line = ft_strchr(n_line, '\n');
 	if (n_line)
 		*n_line = '\0';
 	i = 0;
+	valid = 0;
 	while (line[i])
 	{
-		while (ft_isspace(line[i]))
+		while (ft_isspace(line[i]) || line[i] == '-')
 			i++;
-		if (ft_isdigit(line[i]) || ft_strchr("xabcdef,XABCDEF", line[i]))
+		if (!line[i])
+			return (valid);	
+		if ((ft_isdigit(line[i]) || ft_strchr("xabcdef,XABCDEF", line[i])))
 		{
+			valid = 1;
 			i++;
 			continue;
 		}
-		ft_printf("Err: Not a Valid Map");
-		free(line);
-		exit(EXIT_FAILURE);	
+		valid = 0;
+		break ;
 	}
-	if (!line[0])
-	{
-		return 0;
-	}
-	return (1);
+	return (valid);
 }
 
 int		count_points(char *s, char c)

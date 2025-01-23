@@ -15,6 +15,15 @@
     #define DEFAULT_COLOR 0xFFFFFF
 #endif
 
+
+/*
+    Allocation information
+*/
+typedef struct s_allocation {
+    void *ptr;
+    struct s_allocation *next;
+} t_allocation;
+
 /*
     point presentation:
 */
@@ -46,15 +55,22 @@ typedef struct s_map
 typedef struct  s_vars
 {
 	t_map map;
+    t_allocation *head;
 
 } t_vars;
 
 /* Parsing map Functions */
+void	ft_gnl_err(int fd, char *line, char *str);
 int     ft_isspace(char c);
 int     valid_line(char *line);
 int     count_points(char *s, char c);
 void    map_dimension(t_vars *var);
 
+
+
+/* garbage collector Functions: */
+void free_all(t_allocation **head);
+void *my_malloc(size_t size, t_allocation **head);
 
 // /*
 //     image presentation:
