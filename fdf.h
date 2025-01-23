@@ -51,7 +51,7 @@ typedef struct  s_vars
 
 /* Parsing map Functions */
 int     ft_isspace(char c);
-char	*valid_line(char *line);
+int     valid_line(char *line);
 int     count_points(char *s, char c);
 void    map_dimension(t_vars *var);
 

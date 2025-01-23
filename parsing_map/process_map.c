@@ -1,4 +1,4 @@
-#include "fdf.h"
+#include "../fdf.h"
 
 int	ft_isspace(char c)
 {
@@ -8,16 +8,16 @@ int	ft_isspace(char c)
 	return (0);
 }
 
-char	*valid_line(char *line)
+int	valid_line(char *line)
 {
-	char	*null_position;
+	char	*n_line;
 	int		i;
 
-	null_position = ft_strchr(line, '\n');
-	*null_position = '\0';
-
+	n_line = line;
+	n_line = ft_strchr(n_line, '\n');
+	if (n_line)
+		*n_line = '\0';
 	i = 0;
-
 	while (line[i])
 	{
 		while (ft_isspace(line[i]))
@@ -27,9 +27,15 @@ char	*valid_line(char *line)
 			i++;
 			continue;
 		}
-		perror("Err: Not a Valid Map");
+		ft_printf("Err: Not a Valid Map");
+		free(line);
+		exit(EXIT_FAILURE);	
 	}
-	return (line);
+	if (!line[0])
+	{
+		return 0;
+	}
+	return (1);
 }
 
 int		count_points(char *s, char c)

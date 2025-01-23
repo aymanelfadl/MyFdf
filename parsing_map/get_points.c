@@ -1,5 +1,4 @@
-#include "fdf.h"
-
+#include "../fdf.h"
 
 void	map_dimension(t_vars *var)
 {
@@ -16,8 +15,9 @@ void	map_dimension(t_vars *var)
 	var->map.map_height = 0;
 	var->map.map_width = 0;
 	line = get_next_line(fd);
-	while (line);
+	while (line != NULL)
 	{
+		ft_printf("line::%s\n",line);
 		if (valid_line(line))
 		{
 			max_width = count_points(line, ' ');
@@ -26,6 +26,6 @@ void	map_dimension(t_vars *var)
 			var->map.map_height++;
 		}
 		free(line);
-		get_next_line(line);
+		line = get_next_line(fd);
 	}
 }

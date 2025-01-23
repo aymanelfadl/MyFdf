@@ -47,10 +47,10 @@ char	*ft_creatbuffer(int fd, char *buffer)
 		if (bytes_read < 0)
 			return (free(temp_buffer), NULL);
 		temp_buffer[bytes_read] = '\0';
-		new_buffer = ft_strjoin(buffer, temp_buffer);
+		new_buffer = my_strjoin(buffer, temp_buffer);
 		free(buffer);
 		buffer = new_buffer;
-		if (ft_strchr(buffer, '\n') || bytes_read == 0)
+		if (my_strchr(buffer, '\n') || bytes_read == 0)
 			break ;
 	}
 	free(temp_buffer);
@@ -59,8 +59,8 @@ char	*ft_creatbuffer(int fd, char *buffer)
 
 char	*ft_update_holder(char *buffer)
 {
-	if (ft_strchr(buffer, '\n'))
-		return (ft_strdup(ft_strchr(buffer, '\n')));
+	if (my_strchr(buffer, '\n'))
+		return (my_strdup(my_strchr(buffer, '\n')));
 	return (NULL);
 }
 
