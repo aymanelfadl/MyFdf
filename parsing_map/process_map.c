@@ -43,8 +43,6 @@ int valid_line(char *line)
     return (1);
 }
 
-
-
 int		count_points(char *s, char c)
 {
 	size_t	nwords;
