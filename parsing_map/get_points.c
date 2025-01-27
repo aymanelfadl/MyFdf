@@ -12,10 +12,11 @@ void	map_dimension(t_vars *var)
 	var->map.map_height = 0;
 	var->map.map_width = 0;
 	line = get_next_line(fd);
-	while (line != NULL)
+	while (line)
 	{
+		ft_printf("line: %s\n", line);
 		if (!valid_line(line))
-			ft_gnl_err(fd, line, "Err: Not a Valid Map.");
+			ft_gnl_err(fd, line, "Err: Not a Valid Map in Map_Dimension.");
 		max_width = count_points(line, ' ');
 		if (max_width > var->map.map_width)
 			var->map.map_width = max_width; 
@@ -75,9 +76,11 @@ void	get_points(t_vars *var, char *line)
 	int				j;
 	char			**points_height;
 
-	points_height = ft_split((const char *)line, ' '); 
+	points_height = ft_split(line, ' ');
+	if (!points_height)
+    	ft_printf("Error splitting line: %s\n", line);
 	j = 0;
-	while (j < var->map.map_width)
+	while (j < var->map.map_width && points_height[j])
 	{
 		var->map.map_points[i][j].x = j;
 		var->map.map_points[i][j].y = i;
@@ -99,10 +102,14 @@ void	add_points(t_vars *var)
 	if (fd < 0)
 		ft_gnl_err(fd, NULL, "Err: Can't Open Map In add_points.");
 	line = get_next_line(fd);
-	while (line != NULL)
+	while (line)
 	{
+		ft_printf("line: %s\n", line);
 		if (!valid_line(line))
-			ft_gnl_err(fd, line, "Err: Not a Valid Map.");
+		{
+			ft_printf("Invalid line: %s\n", line);
+			ft_gnl_err(fd, line, "Err: Not a Valid Map in Add_points.");
+		}
 		get_points(var, line);
 		free(line);
 		line = get_next_line(fd);

@@ -1,66 +1,40 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aelfadl <marvin@42.fr>                     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/27 23:33:22 by aelfadl           #+#    #+#             */
-/*   Updated: 2024/12/27 23:33:38 by aelfadl          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 
-static size_t	ft_strlen(const char *s)
+void	*my_calloc(size_t num_elements, size_t element_size)
 {
-	size_t	len;
+	void	*ptr;
+	size_t	total_size;
+	size_t	i;
 
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
+	if (num_elements != 0 && SIZE_MAX / num_elements < element_size)
+		return (NULL);
+	total_size = num_elements * element_size;
+	if (total_size == 0)
+		total_size = 1;
+	ptr = malloc(total_size);
+	if (!ptr)
+		return (NULL);
+	i = 0;
+	while (total_size > i)
+	{
+		((unsigned char *)ptr)[i] = 0;
+		i++;
+	}
+	return (ptr);
 }
 
-char	*my_strjoin(char *s1, char *s2)
-{
-	char	*res;
-	size_t	lens1;
-	size_t	lens2;
-
-	lens1 = 0;
-	lens2 = 0;
-	if (!s1 && !s2)
-		return (NULL);
-	if (s1)
-		lens1 = ft_strlen(s1);
-	if (s2)
-		lens2 = ft_strlen(s2);
-	res = malloc(lens1 + lens2 + 1);
-	if (!res)
-		return (NULL);
-	if (s1)
-		ft_memcpy(res, s1, lens1);
-	if (s2)
-		ft_memcpy(res + lens1, s2, lens2);
-	res[lens1 + lens2] = '\0';
-	return (res);
-}
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*my_memcpy(void *dst, const void *src, size_t n)
 {
 	unsigned char	*d;
 	unsigned char	*s;
 	size_t			i;
 
-	if (!dst && !src)
-		return (NULL);
-	if (dst == src)
-		return (dst);
+	i = 0;
 	d = (unsigned char *)dst;
 	s = (unsigned char *)src;
-	i = 0;
-	while (i < n)
+	if (!dst && !src)
+		return (NULL);
+	while (i < n && d != s)
 	{
 		d[i] = s[i];
 		i++;
@@ -68,35 +42,52 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	return (dst);
 }
 
-char	*my_strdup(char *s1)
+size_t	my_strlen(const char *str)
 {
-	size_t	len;
-	char	*ptr;
 	size_t	i;
 
-	len = ft_strlen(s1);
 	i = 0;
-	ptr = malloc(len + 1);
-	if (ptr == NULL)
-		return (NULL);
-	while (i < len)
-	{
-		ptr[i] = s1[i];
+	if (!str)
+		return (0);
+	while (str[i])
 		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
+	return (i);
 }
 
-char	*my_strchr(char *s, int c)
+char	*my_strjoin(char *s1, char *s2)
 {
-	while (*s != '\0')
+	size_t	len1;
+	size_t	len2;
+	char	*str;
+
+	len1 = 0;
+	len2 = 0;
+	if (s1 != NULL)
+		len1 = my_strlen(s1);
+	if (s2 != NULL)
+		len2 = my_strlen(s2);
+	str = my_calloc(len1 + len2 + 1, 1);
+	if (!str)
+		return (NULL);
+	if (s1)
+		my_memcpy(str, s1, len1);
+	if (s2)
+		my_memcpy(str + len1, s2, len2);
+	return (str);
+}
+
+char	*my_strchr(char *str, int c)
+{
+	int	i;
+
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (str[i])
 	{
-		if (*s == (char)c)
-			return (++s);
-		s++;
+		if (str[i] == c)
+			return (&str[i]);
+		i++;
 	}
-	if ((char)c == '\0' && *s == '\0')
-		return ((char *)s);
 	return (NULL);
 }

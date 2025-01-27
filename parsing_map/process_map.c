@@ -21,34 +21,29 @@ int	ft_isspace(char c)
 	return (0);
 }
 
-int	valid_line(char *line)
+int valid_line(char *line)
 {
-	char	*n_line;
-	int		i;
-	int		valid;
+    char *n_line;
+    int i;
 
-	n_line = line;
-	n_line = ft_strchr(n_line, '\n');
-	if (n_line)
-		*n_line = '\0';
-	i = 0;
-	valid = 0;
-	while (line[i++])
-	{
-		while (ft_isspace(line[i]) || line[i] == '-')
-			i++;
-		if (!line[i])
-			return (valid);	
-		if ((ft_isdigit(line[i]) || ft_strchr("xabcdef,XABCDEF", line[i])))
-		{
-			valid = 1;
-			continue;
-		}
-		valid = 0;
-		break ;
-	}
-	return (valid);
+    n_line = ft_strchr(line, '\n');
+    if (n_line)
+        *n_line = '\0';
+    i = 0;
+    while (line[i])
+    {
+        while (ft_isspace(line[i]) || line[i] == '-')
+            i++;
+        if (!line[i])
+            break;
+        if (!ft_isdigit(line[i]) && line[i] != ',' && !ft_strchr("xabcdefABCDEF", line[i]))
+            return (0);
+        i++;
+    }
+    return (1);
 }
+
+
 
 int		count_points(char *s, char c)
 {
