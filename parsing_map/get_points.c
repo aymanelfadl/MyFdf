@@ -14,7 +14,6 @@ void	map_dimension(t_vars *var)
 	line = get_next_line(fd);
 	while (line)
 	{
-		ft_printf("line: %s\n", line);
 		if (!valid_line(line))
 			ft_gnl_err(fd, line, "Err: Not a Valid Map in Map_Dimension.");
 		max_width = count_points(line, ' ');
@@ -65,56 +64,60 @@ void	set_color(t_vars *var, char *colors, int x, int y)
 	}
 	else
 		var->map.map_points[x][y].color = DEFAULT_COLOR;
+	free(color[0]);
 	free(color);
 
 }
 
 
-void	get_points(t_vars *var, char *line)
+void get_points(t_vars *var, char *line, int i)
 {
-	static int		i;
-	int				j;
-	char			**points_height;
+    char **points_height;
+    int j;
 
-	points_height = ft_split(line, ' ');
-	if (!points_height)
-    	ft_printf("Error splitting line: %s\n", line);
+    points_height = ft_split(line, ' ');
+    if (!points_height)
+    {
+        ft_printf("Error splitting line: %s\n", line);
+        return;
+    }
+    j = 0;
+    while (j < var->map.map_width && points_height[j])
+    {
+        var->map.map_points[i][j].x = j;
+        var->map.map_points[i][j].y = i;
+        var->map.map_points[i][j].z = ft_atoi(points_height[j]);
+        set_color(var, points_height[j], i, j);
+        j++;
+    }
 	j = 0;
-	while (j < var->map.map_width && points_height[j])
+    while (points_height[j])
 	{
-		var->map.map_points[i][j].x = j;
-		var->map.map_points[i][j].y = i;
-		var->map.map_points[i][j].z  =  ft_atoi((const char *)points_height[j]);
-		set_color(var, points_height[j] , i, j);
-		free(points_height[j]);
+        free(points_height[j]);
 		j++;
 	}
-	i++;
-	free(points_height);
+    free(points_height);
 }
 
-void	add_points(t_vars *var)
+void add_points(t_vars *var)
 {
-	int		fd;
-	char	*line;
+    int     fd;
+    char    *line;
+    int     i;
 
-	fd = open(var->map.map_name, O_RDONLY);
-	if (fd < 0)
-		ft_gnl_err(fd, NULL, "Err: Can't Open Map In add_points.");
-	line = get_next_line(fd);
-	while (line)
-	{
-		ft_printf("line: %s\n", line);
-		if (!valid_line(line))
-		{
-			ft_printf("Invalid line: %s\n", line);
-			ft_gnl_err(fd, line, "Err: Not a Valid Map in Add_points.");
-		}
-		get_points(var, line);
-		free(line);
-		line = get_next_line(fd);
-	}
-	close(fd);
-
-
+    i = 0;
+    fd = open(var->map.map_name, O_RDONLY);
+    if (fd < 0)
+        ft_gnl_err(fd, NULL, "Err: Can't Open Map In add_points.");
+    line = get_next_line(fd);
+    while (line)
+    {
+        if (!valid_line(line))
+            ft_gnl_err(fd, NULL, "Err: Not a Valid Map in Add_points.");
+        get_points(var, line, i);
+        free(line);
+        line = get_next_line(fd);
+        i++;
+    }
+    close(fd);
 }
