@@ -79,7 +79,7 @@ void ft_draw_line(t_vars *vars , t_point *p1, t_point *p2)
     int dy;
 
     dx = abs(p2->x - p1->x);
-    dy = abs(p2->y - p2->y);
+    dy = abs(p2->y - p1->y);
 
     if (dx > dy)
         ft_lower_slope(vars, dx, dy, p1);
@@ -89,19 +89,22 @@ void ft_draw_line(t_vars *vars , t_point *p1, t_point *p2)
 
 void draw_img(t_vars *vars)
 {
-    int	i;
-	int	j;
+    int i;
+    int j;
 
-	i = 0;
-	while (i < vars->map.map_height)
-	{
-		j = 0;
-		while (j < vars->map.map_width - 1)
-		{
-			ft_draw_line(vars, &vars->map.map_points[i][j], &vars->map.map_points[i][j+1]);
-			j++;
-		}
-		
-		i++;
-	}
+    i = 0;
+    apply_scale(vars);
+    while (i < vars->map.map_height)
+    {
+        j = 0;
+        while (j < vars->map.map_width)
+        {
+            if (j < vars->map.map_width - 1)
+                ft_draw_line(vars, &vars->map.map_points[i][j], &vars->map.map_points[i][j + 1]);
+            if (i < vars->map.map_height - 1)
+                ft_draw_line(vars, &vars->map.map_points[i][j], &vars->map.map_points[i + 1][j]);
+            j++;
+        }
+        i++;
+    }
 }

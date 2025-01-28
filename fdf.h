@@ -67,6 +67,8 @@ typedef struct s_mlx_info
 {
     void *mlx_connection;
     void *mlx_window;
+    int     mlx_window_height;
+    int     mlx_window_width;
 }   t_mlx_info;
 
 /*

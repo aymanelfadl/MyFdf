@@ -23,9 +23,9 @@ int main(int argc, char *argv[])
             }
             ft_printf("\n");
         }
-        // window_init(&vars);
-        // if (vars.head)
-        //     free_all(&vars.head);
+        window_init(&vars);
+        if (vars.head)
+            free_all(&vars.head);
         return 0;
     }
     ft_printf("\n");
