@@ -94,6 +94,7 @@ void draw_img(t_vars *vars)
 
     i = 0;
     apply_scale(vars);
+    move_to_center(vars);
     while (i < vars->map.map_height)
     {
         j = 0;
