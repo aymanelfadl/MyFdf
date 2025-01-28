@@ -1,4 +1,4 @@
-#include "fdf.h"
+#include "../fdf.h"
 
 
 void    imag_init(t_vars *vars)
