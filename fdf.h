@@ -20,10 +20,24 @@
 /*
     Allocation information
 */
-typedef struct s_allocation {
+typedef struct s_allocation
+{
     void *ptr;
     struct s_allocation *next;
 } t_allocation;
+
+
+/*
+    image presentat:
+*/
+typedef struct s_img 
+{
+    void			*img;
+	char			*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+}   t_img;
 
 /*
     point presentation:
@@ -40,7 +54,6 @@ typedef struct s_point
 /*
     map presentation:
 */
-
 typedef struct s_map
 {
 	char *map_name;
@@ -49,16 +62,28 @@ typedef struct s_map
     t_point **map_points;
 } t_map;
 
+typedef struct s_mlx_info
+{
+    void *mlx_connection;
+    void *mlx_window;
+}   t_mlx_info;
+
 /*
 	all My variables
 */
-
 typedef struct  s_vars
 {
 	t_map map;
+    t_img img;
+	t_mlx_info mlx_info;
     t_allocation *head;
 
 } t_vars;
+
+
+/* Window Functions */
+void    window_init(t_vars *vars);
+
 
 /* Parsing map Functions */
 void	ft_gnl_err(int fd, char *line, char *str);

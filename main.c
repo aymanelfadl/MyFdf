@@ -1,9 +1,9 @@
 #include "fdf.h"
 
-
 int main(int argc, char *argv[])
 {
     t_vars vars;
+   
     if (argc == 2)
     {
         vars.map.map_name = argv[1];
@@ -25,6 +25,7 @@ int main(int argc, char *argv[])
         }
         if (vars.head)
             free_all(&vars.head);
+        window_init(&vars);
         return 0;
     }
     ft_printf("\n");
