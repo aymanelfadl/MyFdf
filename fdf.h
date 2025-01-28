@@ -61,7 +61,23 @@ typedef struct s_map
     int map_width;
     int map_scale;
     t_point **map_points;
+    t_map_range map_range;
 } t_map;
+
+/*
+    map range presentation:
+*/
+typedef struct s_map_range
+{
+    int max_x;
+    int min_x;
+    int max_y;
+    int min_y;
+    int range_width;
+    int range_height;
+}   t_map_range;
+
+
 
 typedef struct s_mlx_info
 {
@@ -91,7 +107,9 @@ void    window_init(t_vars *vars);
 /*  Image Functions */
 void    draw_img(t_vars *vars);
 int     right_scale(t_vars *vars);
+int     to_center(t_vars *vars);
 void    apply_scale(t_vars *vars);
+
 
 /* Parsing map Functions */
 void	ft_gnl_err(int fd, char *line, char *str);

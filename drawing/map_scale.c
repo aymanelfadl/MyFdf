@@ -15,6 +15,11 @@ int     right_scale(t_vars *vars)
         return (y_scale);
 }
 
+int     center_img(t_vars *vars)
+{
+    
+}
+
 
 void    apply_scale(t_vars *vars)
 {
