@@ -59,6 +59,7 @@ typedef struct s_map
 	char *map_name;
     int map_height;
     int map_width;
+    int map_scale;
     t_point **map_points;
 } t_map;
 
@@ -84,6 +85,11 @@ typedef struct  s_vars
 /* Window Functions */
 void    window_init(t_vars *vars);
 
+
+/*  Image Functions */
+void    draw_img(t_vars *vars);
+int     right_scale(t_vars *vars);
+void    apply_scale(t_vars *vars);
 
 /* Parsing map Functions */
 void	ft_gnl_err(int fd, char *line, char *str);
