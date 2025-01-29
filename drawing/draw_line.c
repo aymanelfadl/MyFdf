@@ -13,12 +13,17 @@
         access the adress with x and yand change in it : so now change the adress
 */
 
-void ft_put_pixel(t_vars *vars, int x, int y, int color)
-{
+void ft_put_pixel(t_vars *vars, int x, int y, int color) {
     char *pixel;
-    pixel = vars->img.addr + (x * (vars->img.bits_per_pixel / 8) + (y * vars->img.line_length));
-
-    *(unsigned int *) pixel = color; 
+    
+    if (x < 0 || y < 0 || x >= vars->mlx_info.mlx_window_width || y >= vars->mlx_info.mlx_window_height)
+    {   
+        printf("Trying to put pixel at x:%d y:%d (window: %dx%d)\n", x, y, vars->mlx_info.mlx_window_width, vars->mlx_info.mlx_window_height);
+        return ;
+    }
+        
+    pixel = vars->img.addr + (y * vars->img.line_length + x * (vars->img.bits_per_pixel / 8));
+    *(unsigned int *)pixel = color;
 }
 
 void ft_lower_slope(t_vars *vars ,int dx, int dy, t_point *start_point)
@@ -86,7 +91,6 @@ void ft_draw_line(t_vars *vars , t_point *p1, t_point *p2)
     else
         ft_higher_slope(vars, dx, dy, p1);
 }
-
 void draw_img(t_vars *vars)
 {
     int i;
@@ -100,9 +104,9 @@ void draw_img(t_vars *vars)
         j = 0;
         while (j < vars->map.map_width)
         {
-            if (j < vars->map.map_width - 1)
+            if (j + 1 < vars->map.map_width)
                 ft_draw_line(vars, &vars->map.map_points[i][j], &vars->map.map_points[i][j + 1]);
-            if (i < vars->map.map_height - 1)
+            if (i + 1 < vars->map.map_height)
                 ft_draw_line(vars, &vars->map.map_points[i][j], &vars->map.map_points[i + 1][j]);
             j++;
         }
