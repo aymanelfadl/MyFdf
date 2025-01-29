@@ -11,8 +11,8 @@ void    imag_init(t_vars *vars)
 
 void    window_init(t_vars *vars)
 {
-    vars->mlx_info.mlx_window_height = WINDOW_HEIGHT;
-    vars->mlx_info.mlx_window_width = WINDOW_WIDTH;
+    vars->mlx_info.mlx_window_height = 1000;
+    vars->mlx_info.mlx_window_width = 1000;
     vars->mlx_info.mlx_connection = mlx_init();
     vars->mlx_info.mlx_window = mlx_new_window(vars->mlx_info.mlx_connection, vars->mlx_info.mlx_window_height, vars->mlx_info.mlx_window_width, "my first window");
     imag_init(vars);

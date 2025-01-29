@@ -61,3 +61,19 @@ int		count_points(char *s, char c)
 	}
 	return (nwords);
 }
+void	set_color(t_vars *var, char *colors, int x, int y)
+{
+	char	**color;
+
+	color = ft_split((const char *)colors, ',');
+	if (color[1])
+	{
+		var->map.map_points[x][y].color = ft_atoi_base(color[1] + 2, 16);
+		free(color[1]);
+	}
+	else
+		var->map.map_points[x][y].color = DEFAULT_COLOR;
+	free(color[0]);
+	free(color);
+
+}

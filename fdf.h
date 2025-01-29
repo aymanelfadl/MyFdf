@@ -13,8 +13,8 @@
 
 
 #define DEFAULT_COLOR 0xFFFFFF
-#define WINDOW_WIDTH 4800
-#define WINDOW_HEIGHT 4800
+#define WINDOW_WIDTH 4480
+#define WINDOW_HEIGHT 2520
 
 
 
@@ -49,6 +49,7 @@ typedef struct s_point
     int y;
     int z;
     int color;
+    int has_next;
 
 } t_point;
 
@@ -118,8 +119,9 @@ int     valid_line(char *line);
 int     count_points(char *s, char c);
 void    map_dimension(t_vars *var);
 void    map_allocatation(t_vars *var);
-int	ft_atoi_base(char *str, int base);
+int     ft_atoi_base(char *str, int base);
 void	add_points(t_vars *var);
+void	set_color(t_vars *var, char *colors, int x, int y);
 
 
 /* garbage collector Functions: */

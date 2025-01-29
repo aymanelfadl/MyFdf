@@ -52,22 +52,23 @@ void	map_allocatation(t_vars *var)
 	}
 }
 
-void	set_color(t_vars *var, char *colors, int x, int y)
-{
-	char	**color;
-
-	color = ft_split((const char *)colors, ',');
-	if (color[1])
-	{
-		var->map.map_points[x][y].color = ft_atoi_base(color[1] + 2, 16);
-		free(color[1]);
-	}
-	else
-		var->map.map_points[x][y].color = DEFAULT_COLOR;
-	free(color[0]);
-	free(color);
-
-}
+// void	set_point(t_vars *var, int y, int x, char *z)
+// {
+// 	if (ft_atoi(z))
+// 	{
+// 		var->map.map_points[y][x].x = x;
+//         var->map.map_points[y][x].y = y;
+//         var->map.map_points[y][x].z = ft_atoi(z);
+//         var->map.map_points[y][x].valid_point = 1;
+// 	}
+// 	else
+// 	{
+// 		var->map.map_points[y][x].x = x;
+//         var->map.map_points[y][x].y = y;
+//         var->map.map_points[y][x].z = ft_atoi(z);
+// 		var->map.map_points[y][x].valid_point = 0;	
+// 	}
+// }
 
 
 void get_points(t_vars *var, char *line, int i)
@@ -77,25 +78,24 @@ void get_points(t_vars *var, char *line, int i)
 
     points_height = ft_split(line, ' ');
     if (!points_height)
-    {
-        ft_printf("Error splitting line: %s\n", line);
         return;
-    }
-    j = 0;
-    while (j < var->map.map_width && points_height[j])
+    j = -1;
+    while (++j < var->map.map_width)
     {
-        var->map.map_points[i][j].x = j;
-        var->map.map_points[i][j].y = i;
-        var->map.map_points[i][j].z = ft_atoi(points_height[j]);
-        set_color(var, points_height[j], i, j);
-        j++;
+		if (points_height[j])
+		{
+			var->map.map_points[i][j].x = j;
+			var->map.map_points[i][j].y = i;
+			var->map.map_points[i][j].z = ft_atoi(points_height[j]);
+			var->map.map_points[i][j].has_next = 1;
+			set_color(var, points_height[j], i, j);
+		}
+		else
+			var->map.map_points[i][j].has_next = 0;
     }
-	j = 0;
-    while (points_height[j])
-	{
+	j = -1;
+    while (points_height[++j])
         free(points_height[j]);
-		j++;
-	}
     free(points_height);
 }
 

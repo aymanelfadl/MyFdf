@@ -104,12 +104,13 @@ void draw_img(t_vars *vars)
         j = 0;
         while (j < vars->map.map_width)
         {
-            if (j + 1 < vars->map.map_width)
+            ft_printf("valid :: %d\n",vars->map.map_points[i][j].has_next);
+            if (j + 1 < vars->map.map_width && vars->map.map_points[i][j + 1].has_next)
                 ft_draw_line(vars, &vars->map.map_points[i][j], &vars->map.map_points[i][j + 1]);
-            if (i + 1 < vars->map.map_height)
+            if (i + 1 < vars->map.map_height && vars->map.map_points[i + 1][j].has_next)
                 ft_draw_line(vars, &vars->map.map_points[i][j], &vars->map.map_points[i + 1][j]);
             j++;
         }
-        i++;
+    i++;
     }
 }
