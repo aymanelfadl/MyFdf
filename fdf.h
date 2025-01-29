@@ -45,9 +45,9 @@ typedef struct s_img
 */
 typedef struct s_point
 {
-    int x;
-    int y;
-    int z;
+    float x;
+    float y;
+    float z;
     int color;
     int valid_point;
 } t_point;

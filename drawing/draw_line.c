@@ -83,14 +83,16 @@ void ft_draw_line(t_vars *vars , t_point *p1, t_point *p2)
     int dx;
     int dy;
 
-    dx = abs(p2->x - p1->x);
-    dy = abs(p2->y - p1->y);
+    dx = abs((int)p2->x - (int)p1->x);
+    dy = abs((int)p2->y - (int)p1->y);
 
     if (dx > dy)
         ft_lower_slope(vars, dx, dy, p1);
     else
         ft_higher_slope(vars, dx, dy, p1);
 }
+
+
 
 void draw_img(t_vars *vars)
 {
