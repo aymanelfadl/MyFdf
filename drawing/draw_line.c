@@ -91,6 +91,9 @@ void ft_draw_line(t_vars *vars , t_point *p1, t_point *p2)
     else
         ft_higher_slope(vars, dx, dy, p1);
 }
+
+
+
 void draw_img(t_vars *vars)
 {
     int i;
@@ -104,13 +107,15 @@ void draw_img(t_vars *vars)
         j = 0;
         while (j < vars->map.map_width)
         {
-            ft_printf("valid :: %d\n",vars->map.map_points[i][j].has_next);
-            if (j + 1 < vars->map.map_width && vars->map.map_points[i][j].has_next)
-                ft_draw_line(vars, &vars->map.map_points[i][j], &vars->map.map_points[i][j + 1]);
-            if (i + 1 < vars->map.map_height && vars->map.map_points[i][j].has_next)
-                ft_draw_line(vars, &vars->map.map_points[i][j], &vars->map.map_points[i + 1][j]);
+            if (vars->map.map_points[i][j].valid_point)
+            {
+                if (j + 1 < vars->map.map_width && vars->map.map_points[i][j + 1].valid_point)
+                    ft_draw_line(vars, &vars->map.map_points[i][j], &vars->map.map_points[i][j + 1]);
+                if (i + 1 < vars->map.map_height && vars->map.map_points[i + 1][j].valid_point)
+                    ft_draw_line(vars, &vars->map.map_points[i][j], &vars->map.map_points[i + 1][j]);
+            }
             j++;
         }
-    i++;
+        i++;
     }
 }

@@ -49,8 +49,7 @@ typedef struct s_point
     int y;
     int z;
     int color;
-    int has_next;
-
+    int valid_point;
 } t_point;
 
 
@@ -128,6 +127,7 @@ void	set_color(t_vars *var, char *colors, int x, int y);
 void free_all(t_allocation **head);
 void *my_malloc(size_t size, t_allocation **head);
 
+#endif
 // /*
 //     image presentation:
 // */
@@ -141,5 +141,3 @@ void *my_malloc(size_t size, t_allocation **head);
 // 	int		endian;
 // } t_img;
 
-
-#endif

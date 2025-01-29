@@ -82,16 +82,18 @@ void get_points(t_vars *var, char *line, int i)
     j = -1;
     while (++j < var->map.map_width && points_height[j])
     {
-		var->map.map_points[i][j].x = j;
-		var->map.map_points[i][j].y = i;
-		var->map.map_points[i][j].z = ft_atoi(points_height[j]);
-		if (j + 1 < var->map.map_width && points_height[j+1])
-			var->map.map_points[i][j].has_next = 1;
-		else
-			var->map.map_points[i][j].has_next = 0;
-		set_color(var, points_height[j], i, j);
+        var->map.map_points[i][j].x = j;
+        var->map.map_points[i][j].y = i;
+        var->map.map_points[i][j].z = ft_atoi(points_height[j]);
+        var->map.map_points[i][j].valid_point = 1;
+        set_color(var, points_height[j], i, j);
     }
-	j = -1;
+    while (j < var->map.map_width)
+    {
+        var->map.map_points[i][j].valid_point = 0;
+        j++;
+    }
+    j = -1;
     while (points_height[++j])
         free(points_height[j]);
     free(points_height);
