@@ -12,9 +12,10 @@
 # include <fcntl.h>
 
 
-#ifndef DEFAULT_COLOR
-    #define DEFAULT_COLOR 0xFFFFFF
-#endif
+#define DEFAULT_COLOR 0xFFFFFF
+#define WINDOW_WIDTH 1000
+#define WINDOW_HEIGHT 1000
+
 
 
 /*
