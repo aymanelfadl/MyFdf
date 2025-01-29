@@ -92,8 +92,6 @@ void ft_draw_line(t_vars *vars , t_point *p1, t_point *p2)
         ft_higher_slope(vars, dx, dy, p1);
 }
 
-
-
 void draw_img(t_vars *vars)
 {
     int i;

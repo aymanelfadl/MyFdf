@@ -109,6 +109,8 @@ int     right_scale(t_vars *vars);
 void set_boundaries(t_vars *vars);
 void     move_to_center(t_vars *vars);
 void    apply_scale(t_vars *vars);
+void	apply_rotation(t_vars *vars, float angle, char axis);
+void	iso_point(t_vars *vars);
 
 
 /* Parsing map Functions */
