@@ -13,8 +13,8 @@
 
 
 #define DEFAULT_COLOR 0xFFFFFF
-#define WINDOW_WIDTH 4480
-#define WINDOW_HEIGHT 2520
+#define WINDOW_WIDTH 500
+#define WINDOW_HEIGHT 500
 
 
 
@@ -52,7 +52,6 @@ typedef struct s_point
     int valid_point;
 } t_point;
 
-
 /*
     map range presentation:
 */
@@ -77,7 +76,6 @@ typedef struct s_map
     t_point **map_points;
     t_map_range map_range;
 } t_map;
-
 
 
 typedef struct s_mlx_info

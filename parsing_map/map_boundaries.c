@@ -35,6 +35,7 @@ void move_to_center(t_vars *vars)
     int center_y;
     int i;
     int j;
+    
     set_boundaries(vars);
     center_x = (vars->mlx_info.mlx_window_width - (vars->map.map_range.max_x - vars->map.map_range.min_x)) / 2;
     center_y = (vars->mlx_info.mlx_window_height - (vars->map.map_range.max_y - vars->map.map_range.min_y)) / 2;

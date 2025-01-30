@@ -100,8 +100,8 @@ void draw_img(t_vars *vars)
     int j;
 
     i = 0;
-    // apply_scale(vars);
-    // iso_point(vars);
+    apply_scale(vars);
+    iso_point(vars);
     move_to_center(vars);
     while (i < vars->map.map_height)
     {

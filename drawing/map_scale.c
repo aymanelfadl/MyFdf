@@ -30,7 +30,7 @@ int     right_scale(t_vars *vars)
 
     if (x_scale < y_scale)
         return (x_scale);
-    else
+    else 
         return (y_scale);
 }
 
