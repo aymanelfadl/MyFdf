@@ -1,6 +1,23 @@
 #include "../fdf.h"
 
 
+
+int step_x(t_point *start_point, t_point *end_point)
+{
+    if (end_point->x > start_point->x)
+        return (1);
+    else
+        return (-1);
+}
+
+int step_y(t_point *start_point, t_point *end_point)
+{
+    if (end_point->y > start_point->y)
+        return (1);
+    else
+        return (-1);
+}
+
 int     right_scale(t_vars *vars)
 {
     int x_scale;

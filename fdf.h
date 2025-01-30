@@ -104,6 +104,8 @@ void    window_init(t_vars *vars);
 
 
 /*  Image Functions */
+int step_x(t_point *start_point, t_point *end_point);
+int step_y(t_point *start_point, t_point *end_point);
 void    draw_img(t_vars *vars);
 int     right_scale(t_vars *vars);
 void set_boundaries(t_vars *vars);
@@ -111,7 +113,6 @@ void     move_to_center(t_vars *vars);
 void    apply_scale(t_vars *vars);
 void	apply_rotation(t_vars *vars, float angle, char axis);
 void	iso_point(t_vars *vars);
-
 
 /* Parsing map Functions */
 void	ft_gnl_err(int fd, char *line, char *str);
