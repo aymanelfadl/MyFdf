@@ -62,6 +62,8 @@ typedef struct s_map_range
     int min_x;
     int max_y;
     int min_y;
+    int max_z;
+    int min_z;
 }   t_map_range;
 /*
     map presentation:
@@ -104,11 +106,13 @@ void    window_init(t_vars *vars);
 
 
 /*  Image Functions */
-int step_x(t_point *start_point, t_point *end_point);
-int step_y(t_point *start_point, t_point *end_point);
+int     step_x(t_point *start_point, t_point *end_point);
+int     step_y(t_point *start_point, t_point *end_point);
 void    draw_img(t_vars *vars);
 int     right_scale(t_vars *vars);
-void set_boundaries(t_vars *vars);
+void    set_boundaries(t_vars *vars);
+float	calculate_height_factor(t_vars *vars);
+void    set_height_boundaries(t_vars *vars);
 void     move_to_center(t_vars *vars);
 void    apply_scale(t_vars *vars);
 void	apply_rotation(t_vars *vars, float angle, char axis);
