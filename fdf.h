@@ -17,6 +17,27 @@
 #define WINDOW_HEIGHT 500
 
 
+// keyscode
+# define KEY_W 119
+# define KEY_S 115
+# define KEY_A 97
+# define KEY_D 100
+# define KEY_Q 113
+# define KEY_E 101
+# define KEY_I 105
+# define KEY_Z 122
+# define KEY_O 111
+# define KEY_P 112
+# define KEY_UP 65362
+# define KEY_DOWN 65364
+# define KEY_RIGHT 65363
+# define KEY_LEFT 65361
+# define KEY_SPACE 32
+
+# define KEY_ESC 65307
+
+
+
 
 /*
     Allocation information
@@ -102,6 +123,9 @@ typedef struct  s_vars
 /* Window Functions */
 void    window_init(t_vars *vars);
 
+/*  Hooks Events    */
+int	handle_movement(int keycode, t_vars *vars);
+
 
 /*  Image Functions */
 int     step_x(t_point *start_point, t_point *end_point);
@@ -131,6 +155,8 @@ void	set_color(t_vars *var, char *colors, int x, int y);
 /* garbage collector Functions: */
 void free_all(t_allocation **head);
 void *my_malloc(size_t size, t_allocation **head);
+
+
 
 #endif
 // /*

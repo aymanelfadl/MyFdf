@@ -21,7 +21,6 @@ void ft_put_pixel(t_vars *vars, int x, int y, int color) {
         printf("Trying to put pixel at x:%d y:%d (window: %dx%d)\n", x, y, vars->mlx_info.mlx_window_width, vars->mlx_info.mlx_window_height);
         return ;
     }
-        
     pixel = vars->img.addr + (y * vars->img.line_length + x * (vars->img.bits_per_pixel / 8));
     *(unsigned int *)pixel = color;
 }
@@ -91,8 +90,6 @@ void ft_draw_line(t_vars *vars , t_point *p1, t_point *p2)
     else
         ft_higher_slope(vars, dx, dy, p1, p2);
 }
-
-
 
 void draw_img(t_vars *vars)
 {
