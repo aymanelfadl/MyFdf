@@ -13,8 +13,8 @@
 
 
 #define DEFAULT_COLOR 0xFF0000
-# define WINDOW_WIDTH 1600
-# define WINDOW_HEIGHT 1600
+# define WINDOW_WIDTH 600
+# define WINDOW_HEIGHT 600
 
 
 // keyscode
@@ -124,15 +124,13 @@ typedef struct  s_vars
 
 /* Window Functions */
 void    window_init(t_vars *vars);
+void    set_default_img(t_vars *vars);
 
 /*  Hooks Events    */
 int	handle_movement(int keycode, t_vars *vars);
-void  move_up(t_vars *vars);
-void  move_down(t_vars *vars);
-void  move_left(t_vars *vars);
-void  move_right(t_vars *vars);
-void    zoom_in(t_vars *vars);
-void    zoom_out(t_vars *vars);
+void  zoom_in(t_vars *vars);
+void  zoom_out(t_vars *vars);
+void hooks_init(t_vars *vars);
 
 
 
@@ -162,6 +160,7 @@ void    map_allocatation(t_vars *var);
 int     ft_atoi_base(char *str, int base);
 void	add_points(t_vars *var);
 void	set_color(t_vars *var, char *colors, int x, int y);
+void    map_init(t_vars *vars);
 
 
 /* garbage collector Functions: */

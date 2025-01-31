@@ -7,6 +7,7 @@ void    zoom_in(t_vars *vars)
     float hight_factor;
 
     hight_factor = calculate_height_factor(vars);
+    i = 0;
     while (i < vars->map.map_height)
     {
         j = 0;
@@ -28,6 +29,7 @@ void    zoom_out(t_vars *vars)
     float hight_factor;
 
     hight_factor = calculate_height_factor(vars);
+    i = 0;
     while (i < vars->map.map_height)
     {
         j = 0;

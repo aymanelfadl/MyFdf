@@ -48,7 +48,6 @@ void rotate_img(int keycode,t_vars *vars)
   move_to_center(vars);
   draw_img(vars);
   mlx_put_image_to_window(vars->mlx_info.mlx_connection, vars->mlx_info.mlx_window, vars->img.img, 0, 0);
-
 }
 
 
@@ -62,5 +61,19 @@ int	handle_movement(int keycode, t_vars *vars)
       zoom_img(keycode, vars);
     else if (keycode == KEY_E || keycode == KEY_Q || keycode == KEY_W || keycode == KEY_A || keycode == KEY_D || keycode == KEY_S)
       rotate_img(keycode, vars);
+    else if (keycode == 32)
+    {
+      mlx_destroy_image(vars->mlx_info.mlx_connection, vars->img.img);
+      map_init(vars);
+      set_default_img(vars);  
+      draw_img(vars);
+      mlx_put_image_to_window(vars->mlx_info.mlx_connection, vars->mlx_info.mlx_window, vars->img.img, 0, 0);
+    }
     return (0);
+}
+
+void hooks_init(t_vars *vars)
+{
+	  mlx_hook(vars->mlx_info.mlx_window, 2, 1L << 0, handle_movement, vars);
+    mlx_hook(vars->mlx_info.mlx_window, 17, 0, clean_mlx_infos, vars);    
 }

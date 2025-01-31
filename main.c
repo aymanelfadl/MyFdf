@@ -1,5 +1,8 @@
 #include "fdf.h"
 
+
+
+
 int main(int argc, char *argv[])
 {
     t_vars vars;
@@ -7,16 +10,17 @@ int main(int argc, char *argv[])
     if (argc == 2)
     {
         vars.map.map_name = argv[1];
-        map_dimension(&vars);
-        ft_printf("w::%d\nh::%d\n", vars.map.map_width, vars.map.map_height);
-        map_allocatation(&vars);
-        add_points(&vars);
+        map_init(&vars);
         window_init(&vars);
+        set_default_img(&vars);
+        draw_img(&vars);
+        mlx_put_image_to_window(vars.mlx_info.mlx_connection, vars.mlx_info.mlx_window, vars.img.img, 0, 0);
+        hooks_init(&vars);
+        mlx_loop(vars.mlx_info.mlx_connection);
         if (vars.head)
             free_all(&vars.head);
         return 0;
     }
-    ft_printf("\n");
 }
 
 
