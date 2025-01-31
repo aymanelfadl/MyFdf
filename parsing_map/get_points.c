@@ -12,8 +12,11 @@ void	map_dimension(t_vars *var)
 	var->map.map_height = 0;
 	var->map.map_width = 0;
 	line = get_next_line(fd);
+	if (!line)
+		ft_gnl_err(fd, line, "Err: Not a Valid Map in Map_Dimension.");
 	while (line)
 	{
+		ft_printf("line1::%s\n",line);
 		if (!valid_line(line))
 			ft_gnl_err(fd, line, "Err: Not a Valid Map in Map_Dimension.");
 		max_width = count_points(line, ' ');
@@ -51,25 +54,6 @@ void	map_allocatation(t_vars *var)
 		i++;
 	}
 }
-
-// void	set_point(t_vars *var, int y, int x, char *z)
-// {
-// 	if (ft_atoi(z))
-// 	{
-// 		var->map.map_points[y][x].x = x;
-//         var->map.map_points[y][x].y = y;
-//         var->map.map_points[y][x].z = ft_atoi(z);
-//         var->map.map_points[y][x].valid_point = 1;
-// 	}
-// 	else
-// 	{
-// 		var->map.map_points[y][x].x = x;
-//         var->map.map_points[y][x].y = y;
-//         var->map.map_points[y][x].z = ft_atoi(z);
-// 		var->map.map_points[y][x].valid_point = 0;	
-// 	}
-// }
-
 
 void get_points(t_vars *var, char *line, int i)
 {
