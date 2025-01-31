@@ -1,18 +1,6 @@
 
 #include "../fdf.h"
 
-/*
-    When you write a pixel:
-        *(unsigned int *)dst = color;
-
-        // It's like:
-        Memory before: [00][00][00][00]
-                        ↓  ↓  ↓  ↓
-        Color (red):   [00][FF][00][00]
-                        A  R  G  B 
-        access the adress with x and yand change in it : so now change the adress
-*/
-
 void ft_put_pixel(t_vars *vars, int x, int y, int color) {
     char *pixel;
     

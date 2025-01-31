@@ -25,7 +25,7 @@ get_next_line:
 minilibx:
 	$(MAKE) -C $(MINILIBXDIR)
 
-%.o: %.c
+%.o: %.c fdf.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

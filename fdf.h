@@ -13,8 +13,8 @@
 
 
 #define DEFAULT_COLOR 0xFFFFFF
-#define WINDOW_WIDTH 500
-#define WINDOW_HEIGHT 500
+# define WINDOW_WIDTH 1600
+# define WINDOW_HEIGHT 1600
 
 
 // keyscode
@@ -155,7 +155,11 @@ void	set_color(t_vars *var, char *colors, int x, int y);
 /* garbage collector Functions: */
 void free_all(t_allocation **head);
 void *my_malloc(size_t size, t_allocation **head);
+int   clean_mlx_infos(t_vars *vars);
 
+
+
+/*  hooks Functions : */
 
 
 #endif

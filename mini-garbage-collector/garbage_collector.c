@@ -32,3 +32,13 @@ void free_all(t_allocation **head) {
     }
     *head = NULL;
 }
+
+int clean_mlx_infos(t_vars *vars)
+{
+    mlx_destroy_image (vars->mlx_info.mlx_connection, vars->img.img);
+    mlx_destroy_window (vars->mlx_info.mlx_connection, vars->mlx_info.mlx_window);
+	mlx_destroy_display (vars->mlx_info.mlx_connection);
+	free (vars->mlx_info.mlx_connection);
+	free_all (&vars->head);
+    exit (0);
+}
