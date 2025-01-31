@@ -61,10 +61,26 @@ int		count_points(char *s, char c)
 	}
 	return (nwords);
 }
+int	interpolate_color(int color1, int color2, float fraction)
+{
+	int	red;
+	int	green;
+	int	blue;
+
+	red = ((1 - fraction) * ((color1 >> 16) & 0xFF)) + (fraction
+			* ((color2 >> 16) & 0xFF));
+	green = ((1 - fraction) * ((color1 >> 8) & 0xFF)) + (fraction
+			* ((color2 >> 8) & 0xFF));
+	blue = ((1 - fraction) * (color1 & 0xFF)) + (fraction * (color2 & 0xFF));
+	return ((red << 16) | (green << 8) | blue);
+}
+
 void	set_color(t_vars *var, char *colors, int x, int y)
 {
 	char	**color;
+	static int persentage;
 
+	persentage = 0.1;
 	color = ft_split((const char *)colors, ',');
 	if (color[1])
 	{
@@ -72,8 +88,10 @@ void	set_color(t_vars *var, char *colors, int x, int y)
 		free(color[1]);
 	}
 	else
-		var->map.map_points[x][y].color = DEFAULT_COLOR;
+		var->map.map_points[x][y].color = interpolate_color(0xff0000, 0x87CEEB, persentage);
+	persentage += 0.1;
+	if (persentage == 1)
+		persentage = 0.1;
 	free(color[0]);
 	free(color);
-
 }

@@ -1,6 +1,8 @@
 
 #include "../fdf.h"
 
+
+
 void ft_put_pixel(t_vars *vars, int x, int y, int color) {
     char *pixel;
     
@@ -15,7 +17,7 @@ void ft_lower_slope(t_vars *vars ,int dx, int dy, t_point *start_point, t_point 
 {
     int i;
     int p;
-	t_point tmp_point;
+    t_point tmp_point;
 
 	tmp_point = *start_point;
     i = 0;
