@@ -18,7 +18,7 @@ int step_y(t_point *start_point, t_point *end_point)
         return (-1);
 }
 
-int     right_scale(t_vars *vars)
+float     right_scale(t_vars *vars)
 {
     float x_scale;
     float y_scale;
@@ -30,7 +30,7 @@ int     right_scale(t_vars *vars)
 
     if (x_scale < y_scale)
         return (x_scale);
-    else 
+    else
         return (y_scale);
 }
 

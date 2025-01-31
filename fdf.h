@@ -93,7 +93,7 @@ typedef struct s_map
 	char *map_name;
     int map_height;
     int map_width;
-    int map_scale;
+    float map_scale;
     t_point **map_points;
     t_map_range map_range;
 } t_map;
@@ -125,13 +125,21 @@ void    window_init(t_vars *vars);
 
 /*  Hooks Events    */
 int	handle_movement(int keycode, t_vars *vars);
+void  move_up(t_vars *vars);
+void  move_down(t_vars *vars);
+void  move_left(t_vars *vars);
+void  move_right(t_vars *vars);
+void    zoom_in(t_vars *vars);
+void    zoom_out(t_vars *vars);
+
 
 
 /*  Image Functions */
+void    img_init(t_vars *vars);
 int     step_x(t_point *start_point, t_point *end_point);
 int     step_y(t_point *start_point, t_point *end_point);
 void    draw_img(t_vars *vars);
-int     right_scale(t_vars *vars);
+float     right_scale(t_vars *vars);
 void    set_boundaries(t_vars *vars);
 float	calculate_height_factor(t_vars *vars);
 void    set_height_boundaries(t_vars *vars);
@@ -139,6 +147,7 @@ void     move_to_center(t_vars *vars);
 void    apply_scale(t_vars *vars);
 void	apply_rotation(t_vars *vars, float angle, char axis);
 void	iso_point(t_vars *vars);
+void    apply_scale(t_vars *vars);
 
 /* Parsing map Functions */
 void	ft_gnl_err(int fd, char *line, char *str);
@@ -157,22 +166,4 @@ void free_all(t_allocation **head);
 void *my_malloc(size_t size, t_allocation **head);
 int   clean_mlx_infos(t_vars *vars);
 
-
-
-/*  hooks Functions : */
-
-
 #endif
-// /*
-//     image presentation:
-// */
-// typedef struct	s_img {
-// 	void	*img;  // mlx_new_image(mlx_connection, width, height)
-// 	char	*addr; // img.addr now points to the start of your image data like this:
-//                     // [Byte1][Byte2][Byte3][Byte4][Byte5][Byte6]...
-//                     //  ^ img.addr points here
-// 	int		bits_per_pixel;
-// 	int		line_length;
-// 	int		endian;
-// } t_img;
-
