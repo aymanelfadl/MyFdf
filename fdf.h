@@ -94,6 +94,8 @@ typedef struct s_map
     int map_height;
     int map_width;
     float map_scale;
+    int map_offset_x;
+    int map_offset_y;
     t_point **map_points;
     t_map_range map_range;
 } t_map;

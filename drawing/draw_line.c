@@ -4,13 +4,11 @@
 void ft_put_pixel(t_vars *vars, int x, int y, int color) {
     char *pixel;
     
-    if (x < 0 || y < 0 || x >= vars->mlx_info.mlx_window_width || y >= vars->mlx_info.mlx_window_height)
+    if (x >= 0 && y >= 0 && x <= vars->mlx_info.mlx_window_width  &&  y <= vars->mlx_info.mlx_window_height)
     {   
-        printf("Trying to put pixel at x:%d y:%d (window: %dx%d)\n", x, y, vars->mlx_info.mlx_window_width, vars->mlx_info.mlx_window_height);
-        return ;
+         pixel = vars->img.addr + (y * vars->img.line_length + x * (vars->img.bits_per_pixel / 8));
+        *(unsigned int *)pixel = color;
     }
-    pixel = vars->img.addr + (y * vars->img.line_length + x * (vars->img.bits_per_pixel / 8));
-    *(unsigned int *)pixel = color;
 }
 
 void ft_lower_slope(t_vars *vars ,int dx, int dy, t_point *start_point, t_point *end_point)

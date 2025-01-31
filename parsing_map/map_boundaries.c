@@ -45,11 +45,10 @@ void move_to_center(t_vars *vars)
         j = 0;
         while (j < vars->map.map_width)
         {
-            vars->map.map_points[i][j].x += center_x - vars->map.map_range.min_x;
-            vars->map.map_points[i][j].y += center_y - vars->map.map_range.min_y;
+            vars->map.map_points[i][j].x += center_x - vars->map.map_range.min_x + vars->map.map_offset_x;
+            vars->map.map_points[i][j].y += center_y - vars->map.map_range.min_y + vars->map.map_offset_y;
             j++;
         }
         i++;
     }
-
 }
