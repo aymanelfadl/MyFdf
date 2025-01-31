@@ -16,7 +16,6 @@ void	map_dimension(t_vars *var)
 		ft_gnl_err(fd, line, "Err: Not a Valid Map in Map_Dimension.");
 	while (line)
 	{
-		ft_printf("line1::%s\n",line);
 		if (!valid_line(line))
 			ft_gnl_err(fd, line, "Err: Not a Valid Map in Map_Dimension.");
 		max_width = count_points(line, ' ');
