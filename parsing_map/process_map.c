@@ -78,9 +78,7 @@ int	interpolate_color(int color1, int color2, float fraction)
 void	set_color(t_vars *var, char *colors, int x, int y)
 {
 	char	**color;
-	static int persentage;
 
-	persentage = 0.1;
 	color = ft_split((const char *)colors, ',');
 	if (color[1])
 	{
@@ -88,10 +86,7 @@ void	set_color(t_vars *var, char *colors, int x, int y)
 		free(color[1]);
 	}
 	else
-		var->map.map_points[x][y].color = interpolate_color(0xff0000, 0x87CEEB, persentage);
-	persentage += 0.1;
-	if (persentage == 1)
-		persentage = 0.1;
+		var->map.map_points[x][y].color = DEFAULT_COLOR;
 	free(color[0]);
 	free(color);
 }

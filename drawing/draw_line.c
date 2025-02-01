@@ -18,6 +18,7 @@ void ft_lower_slope(t_vars *vars ,int dx, int dy, t_point *start_point, t_point 
     int i;
     int p;
     t_point tmp_point;
+    float fraction;
 
 	tmp_point = *start_point;
     i = 0;
@@ -25,6 +26,7 @@ void ft_lower_slope(t_vars *vars ,int dx, int dy, t_point *start_point, t_point 
     ft_put_pixel(vars, tmp_point.x , tmp_point.y, tmp_point.color);
     while (i < dx)
     {
+        fraction = (float)i / dx;
         tmp_point.x += step_x(start_point, end_point);
         if (p < 0)
             p = p + 2 * dy;
@@ -33,7 +35,7 @@ void ft_lower_slope(t_vars *vars ,int dx, int dy, t_point *start_point, t_point 
             tmp_point.y += step_y(start_point, end_point);
             p = p + 2 * dy - 2 * dx;
         }
-        ft_put_pixel(vars, tmp_point.x, tmp_point.y, tmp_point.color);
+        ft_put_pixel(vars, tmp_point.x, tmp_point.y, interpolate_color(start_point->color, end_point->color, fraction));
         i++;
     }
 }
@@ -43,6 +45,7 @@ void ft_higher_slope(t_vars *vars ,int dx, int dy, t_point *start_point, t_point
     int i;
     int p;
 	t_point tmp_point;
+    float fraction;
 
 	tmp_point = *start_point;
     i = 0;
@@ -50,6 +53,7 @@ void ft_higher_slope(t_vars *vars ,int dx, int dy, t_point *start_point, t_point
     ft_put_pixel(vars, tmp_point.x , tmp_point.y, tmp_point.color);
     while (i < dy)
     {
+        fraction = (float)i / dy;
         tmp_point.y += step_y(start_point, end_point);
         if (p < 0)
             p = p + 2 * dx;
@@ -58,7 +62,7 @@ void ft_higher_slope(t_vars *vars ,int dx, int dy, t_point *start_point, t_point
             tmp_point.x += step_x(start_point, end_point);
             p = p + 2 * dx - 2 * dy;
         }
-        ft_put_pixel(vars, tmp_point.x, tmp_point.y, tmp_point.color);
+        ft_put_pixel(vars, tmp_point.x, tmp_point.y, interpolate_color(start_point->color, end_point->color, fraction));
         i++;
     }
 }

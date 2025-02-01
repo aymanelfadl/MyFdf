@@ -148,7 +148,7 @@ void    apply_scale(t_vars *vars);
 void	apply_rotation(t_vars *vars, float angle, char axis);
 void	iso_point(t_vars *vars);
 void    apply_scale(t_vars *vars);
-int	interpolate_color(int color1, int color2, float fraction);
+int	    interpolate_color(int color1, int color2, float fraction);
 
 /* Parsing map Functions */
 void	ft_gnl_err(int fd, char *line, char *str);

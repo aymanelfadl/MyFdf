@@ -23,7 +23,6 @@ void    img_init(t_vars *vars)
 
 void    set_default_img(t_vars *vars)
 {
-
     img_init(vars);
     apply_scale(vars);
     iso_point(vars); 
