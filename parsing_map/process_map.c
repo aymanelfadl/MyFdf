@@ -75,7 +75,7 @@ int	interpolate_color(int color1, int color2, float fraction)
 	return ((red << 16) | (green << 8) | blue);
 }
 
-void	set_color(t_vars *var, char *colors, int x, int y)
+void	set_color(t_vars *var, char *colors, int x, int y, int default_color)
 {
 	char	**color;
 
@@ -86,7 +86,7 @@ void	set_color(t_vars *var, char *colors, int x, int y)
 		free(color[1]);
 	}
 	else
-		var->map.map_points[x][y].color = DEFAULT_COLOR;
+		var->map.map_points[x][y].color = default_color;
 	free(color[0]);
 	free(color);
 }
