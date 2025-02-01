@@ -13,8 +13,8 @@
 
 
 #define DEFAULT_COLOR 0xFF0000
-# define WINDOW_WIDTH 600
-# define WINDOW_HEIGHT 600
+# define WINDOW_WIDTH 1100
+# define WINDOW_HEIGHT 00
 
 
 // keyscode
