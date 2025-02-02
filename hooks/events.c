@@ -49,7 +49,28 @@ void rotate_img(int keycode,t_vars *vars)
   draw_img(vars);
   mlx_put_image_to_window(vars->mlx_info.mlx_connection, vars->mlx_info.mlx_window, vars->img.img, 0, 0);
 }
-
+void re_render_img(t_vars *vars)
+{
+    mlx_destroy_image(vars->mlx_info.mlx_connection, vars->img.img);
+    if (vars->head)
+      free_all(&vars->head);
+    map_init(vars);
+    set_default_img(vars);  
+    draw_img(vars);
+    mlx_put_image_to_window(vars->mlx_info.mlx_connection, vars->mlx_info.mlx_window, vars->img.img, 0, 0);
+}
+void parallel_projection(t_vars *vars)
+{
+      mlx_destroy_image(vars->mlx_info.mlx_connection, vars->img.img);
+    if (vars->head)
+      free_all(&vars->head);
+    map_init(vars);
+    img_init(vars);
+    apply_scale(vars);
+    move_to_center(vars);
+    draw_img(vars);
+    mlx_put_image_to_window(vars->mlx_info.mlx_connection, vars->mlx_info.mlx_window, vars->img.img, 0, 0);  
+}
 
 int	handle_movement(int keycode, t_vars *vars)
 {
@@ -62,13 +83,9 @@ int	handle_movement(int keycode, t_vars *vars)
     else if (keycode == KEY_E || keycode == KEY_Q || keycode == KEY_W || keycode == KEY_A || keycode == KEY_D || keycode == KEY_S)
       rotate_img(keycode, vars);
     else if (keycode == 32)
-    {
-      mlx_destroy_image(vars->mlx_info.mlx_connection, vars->img.img);
-      map_init(vars);
-      set_default_img(vars);  
-      draw_img(vars);
-      mlx_put_image_to_window(vars->mlx_info.mlx_connection, vars->mlx_info.mlx_window, vars->img.img, 0, 0);
-    }
+      re_render_img(vars);
+    else if (keycode == KEY_P)
+      parallel_projection(vars);
     return (0);
 }
 
