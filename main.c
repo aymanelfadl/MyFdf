@@ -18,6 +18,7 @@ int main(int argc, char *argv[])
             free_all(&vars.head);
         return 0;
     }
+    ft_printf("Err: ./fdf <map_name.fdf>\n");
 }
 
 
