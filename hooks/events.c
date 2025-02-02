@@ -64,7 +64,7 @@ void parallel_projection(t_vars *vars)
     static int view;
     mlx_destroy_image(vars->mlx_info.mlx_connection, vars->img.img);
     img_init(vars);
-     if (vars->head)
+    if (vars->head)
       free_all(&vars->head);
     map_init(vars);
     apply_scale(vars);

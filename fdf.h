@@ -14,7 +14,7 @@
 
 # define WINDOW_WIDTH 600
 # define WINDOW_HEIGHT 600
-
+#define M_PI 3.14159265358979323846
 
 // keyscode
 # define KEY_W 119
