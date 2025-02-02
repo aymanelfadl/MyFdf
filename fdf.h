@@ -33,6 +33,7 @@
 # define KEY_LEFT 65361
 # define KEY_SPACE 32
 
+
 # define KEY_ESC 65307
 
 
@@ -117,6 +118,7 @@ typedef struct  s_vars
     t_img img;
 	t_mlx_info mlx_info;
     t_allocation *head;
+    int view;
 
 } t_vars;
 
@@ -148,6 +150,7 @@ void	apply_rotation(t_vars *vars, float angle, char axis);
 void	iso_point(t_vars *vars);
 void    apply_scale(t_vars *vars);
 int	    interpolate_color(int color1, int color2, float fraction);
+void    apply_parallel_projection(t_vars *vars);
 
 /* Parsing map Functions */
 void	ft_gnl_err(int fd, char *line, char *str);

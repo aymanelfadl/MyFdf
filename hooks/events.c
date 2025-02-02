@@ -61,15 +61,18 @@ void re_render_img(t_vars *vars)
 }
 void parallel_projection(t_vars *vars)
 {
-      mlx_destroy_image(vars->mlx_info.mlx_connection, vars->img.img);
-    if (vars->head)
+    static int view;
+    mlx_destroy_image(vars->mlx_info.mlx_connection, vars->img.img);
+    img_init(vars);
+     if (vars->head)
       free_all(&vars->head);
     map_init(vars);
-    img_init(vars);
     apply_scale(vars);
+    vars->view = ++view % 5;
+    apply_parallel_projection(vars);
     move_to_center(vars);
     draw_img(vars);
-    mlx_put_image_to_window(vars->mlx_info.mlx_connection, vars->mlx_info.mlx_window, vars->img.img, 0, 0);  
+    mlx_put_image_to_window(vars->mlx_info.mlx_connection, vars->mlx_info.mlx_window, vars->img.img, 0, 0);
 }
 
 int	handle_movement(int keycode, t_vars *vars)
@@ -82,7 +85,7 @@ int	handle_movement(int keycode, t_vars *vars)
       zoom_img(keycode, vars);
     else if (keycode == KEY_E || keycode == KEY_Q || keycode == KEY_W || keycode == KEY_A || keycode == KEY_D || keycode == KEY_S)
       rotate_img(keycode, vars);
-    else if (keycode == 32)
+    else if (keycode == KEY_SPACE)
       re_render_img(vars);
     else if (keycode == KEY_P)
       parallel_projection(vars);
