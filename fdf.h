@@ -132,7 +132,8 @@ int	handle_movement(int keycode, t_vars *vars);
 void  zoom_in(t_vars *vars);
 void  zoom_out(t_vars *vars);
 void hooks_init(t_vars *vars);
-
+void zoom_img(int keycode, t_vars *vars);
+void parallel_projection(t_vars *vars);
 
 
 /*  Image Functions */

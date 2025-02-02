@@ -1,19 +1,25 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -no-pie
 
-TARGET = fdf
+NAME = fdf
 
 LIBFTDIR = libft
 GETNEXTLINEDIR = getNextLine
 MINILIBXDIR = minilibx-linux
 
-SRCS = $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.c))
+SRCS = main.c draw_line.c garbage_collector.c get_points.c map_boundaries.c \
+        events.c map_scale.c mlx_init.c parallel.c process_map.c rotation.c \
+        img_zoom.c ft_atoi_base.c set_color.c 
+
 OBJS = $(SRCS:.c=.o)
 
-all: $(TARGET)
+all: $(NAME)
 
-$(TARGET): libft get_next_line minilibx $(OBJS)
-	$(CC) $(CFLAGS) main.c $(OBJS) -L$(LIBFTDIR) -lft -L$(GETNEXTLINEDIR) -lgnl -L$(MINILIBXDIR) -lmlx -lXext -lX11 -lm -o $@
+$(NAME): $(OBJS) libft get_next_line minilibx
+	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFTDIR) -lft -L$(GETNEXTLINEDIR) -lgnl -L$(MINILIBXDIR) -lmlx -lXext -lX11 -lm -o $(NAME)
+    
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 libft:
 	$(MAKE) -C $(LIBFTDIR)
@@ -24,23 +30,16 @@ get_next_line:
 minilibx:
 	$(MAKE) -C $(MINILIBXDIR)
 
-%.o: %.c fdf.h
-	$(CC) $(CFLAGS) -c $< -o $@
-
 clean:
 	rm -f $(OBJS)
 	$(MAKE) -C $(LIBFTDIR) clean
 	$(MAKE) -C $(GETNEXTLINEDIR) clean
-	$(MAKE) -C $(MINILIBXDIR) clean
 
 fclean: clean
-	rm -f $(TARGET)
+	rm -f $(NAME)
 	$(MAKE) -C $(LIBFTDIR) fclean
 	$(MAKE) -C $(GETNEXTLINEDIR) fclean
-	$(MAKE) -C $(MINILIBXDIR) fclean
 
 re: fclean all
 
-.PHONY: libft get_next_line minilibx
-
-.SECONDARY:
+.PHONY: all clean fclean re libft get_next_line minilibx
