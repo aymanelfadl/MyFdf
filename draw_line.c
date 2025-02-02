@@ -1,7 +1,5 @@
 
-#include "../fdf.h"
-
-
+#include "fdf.h"
 
 void ft_put_pixel(t_vars *vars, int x, int y, int color) {
     char *pixel;
@@ -66,9 +64,7 @@ void ft_higher_slope(t_vars *vars ,int dx, int dy, t_point *start_point, t_point
         i++;
     }
 }
-/*
-    calculate slope to draw a line between two points
-*/
+
 void ft_draw_line(t_vars *vars , t_point *p1, t_point *p2)
 {
     int dx;

@@ -1,4 +1,4 @@
-#include "../fdf.h"
+#include "fdf.h"
 
 void    map_init(t_vars *vars)
 {

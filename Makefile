@@ -6,7 +6,6 @@ TARGET = fdf
 LIBFTDIR = libft
 GETNEXTLINEDIR = getNextLine
 MINILIBXDIR = minilibx-linux
-SRCDIRS = parsing_map mini-garbage-collector mlx_infos drawing hooks
 
 SRCS = $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.c))
 OBJS = $(SRCS:.c=.o)

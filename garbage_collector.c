@@ -1,4 +1,4 @@
-#include "../fdf.h"
+#include "fdf.h"
 
 void *my_malloc(size_t size, t_allocation **head) {
     void *ptr = malloc(size);

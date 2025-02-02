@@ -1,4 +1,4 @@
-#include "../fdf.h"
+#include "fdf.h"
 
 static int	is_space(char c)
 {

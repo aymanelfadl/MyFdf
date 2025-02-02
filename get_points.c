@@ -1,4 +1,4 @@
-#include "../fdf.h"
+#include "fdf.h"
 
 void	map_dimension(t_vars *var)
 {

@@ -1,6 +1,4 @@
-#include "../fdf.h"
-#include <math.h>
-#include <stdio.h>
+#include "fdf.h"
 
 static void rotate_x_axis(float *y, float *z, float angle)
 {

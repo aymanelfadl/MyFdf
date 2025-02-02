@@ -1,4 +1,4 @@
-#include "../fdf.h"
+#include "fdf.h"
 
 void move_img(int keycode, t_vars *vars)
 {
@@ -17,18 +17,6 @@ void move_img(int keycode, t_vars *vars)
   mlx_put_image_to_window(vars->mlx_info.mlx_connection, vars->mlx_info.mlx_window, vars->img.img, 0, 0);
 }
 
-void zoom_img(int keycode, t_vars *vars)
-{
-  mlx_destroy_image(vars->mlx_info.mlx_connection, vars->img.img);
-  img_init(vars);
-  if (keycode == KEY_I)
-    zoom_in(vars);
-  else
-    zoom_out(vars);
-  move_to_center(vars);
-  draw_img(vars);
-  mlx_put_image_to_window(vars->mlx_info.mlx_connection, vars->mlx_info.mlx_window, vars->img.img, 0, 0);
-}
 void rotate_img(int keycode,t_vars *vars)
 {
   mlx_destroy_image(vars->mlx_info.mlx_connection, vars->img.img);
@@ -59,21 +47,7 @@ void re_render_img(t_vars *vars)
     draw_img(vars);
     mlx_put_image_to_window(vars->mlx_info.mlx_connection, vars->mlx_info.mlx_window, vars->img.img, 0, 0);
 }
-void parallel_projection(t_vars *vars)
-{
-    static int view;
-    mlx_destroy_image(vars->mlx_info.mlx_connection, vars->img.img);
-    img_init(vars);
-    if (vars->head)
-      free_all(&vars->head);
-    map_init(vars);
-    apply_scale(vars);
-    vars->view = ++view % 5;
-    apply_parallel_projection(vars);
-    move_to_center(vars);
-    draw_img(vars);
-    mlx_put_image_to_window(vars->mlx_info.mlx_connection, vars->mlx_info.mlx_window, vars->img.img, 0, 0);
-}
+
 
 int	handle_movement(int keycode, t_vars *vars)
 {

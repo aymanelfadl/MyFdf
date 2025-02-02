@@ -1,4 +1,4 @@
-#include "../fdf.h"
+#include "fdf.h"
 
 void    zoom_in(t_vars *vars)
 {
@@ -42,4 +42,17 @@ void    zoom_out(t_vars *vars)
         }
         i++;
     }
+}
+
+void zoom_img(int keycode, t_vars *vars)
+{
+  mlx_destroy_image(vars->mlx_info.mlx_connection, vars->img.img);
+  img_init(vars);
+  if (keycode == KEY_I)
+    zoom_in(vars);
+  else
+    zoom_out(vars);
+  move_to_center(vars);
+  draw_img(vars);
+  mlx_put_image_to_window(vars->mlx_info.mlx_connection, vars->mlx_info.mlx_window, vars->img.img, 0, 0);
 }
