@@ -75,10 +75,10 @@ int	interpolate_color(int color1, int color2, float fraction)
 	return ((red << 16) | (green << 8) | blue);
 }
 
-void	set_color(t_vars *var, char *colors, int x, int y, int default_color)
+void	set_color(t_vars *var, int x, int y, char *colors)
 {
 	char	**color;
-
+	
 	color = ft_split((const char *)colors, ',');
 	if (color[1])
 	{
@@ -86,7 +86,20 @@ void	set_color(t_vars *var, char *colors, int x, int y, int default_color)
 		free(color[1]);
 	}
 	else
-		var->map.map_points[x][y].color = default_color;
+	{
+		if (ft_atoi(color[0]) <= -20)
+			var->map.map_points[x][y].color = 0x001B44; // Deep Blue 
+		else if (ft_atoi(color[0]) <= 0)
+			var->map.map_points[x][y].color = 0x0088CC; // Cyan Blue 
+		else if (ft_atoi(color[0]) <= 20)
+			var->map.map_points[x][y].color = 0x22AA22; // Green 
+		else if (ft_atoi(color[0]) <= 50)
+			var->map.map_points[x][y].color = 0xFFD700; // Yellow
+		else if (ft_atoi(color[0]) <= 100)
+			var->map.map_points[x][y].color = 0x8B4513; // Brown
+		else
+			var->map.map_points[x][y].color = 0xFFFFFF; // White
+	}
 	free(color[0]);
 	free(color);
 }

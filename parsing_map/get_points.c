@@ -68,10 +68,7 @@ void get_points(t_vars *var, char *line, int i)
         var->map.map_points[i][j].x = j;
         var->map.map_points[i][j].y = i;
         var->map.map_points[i][j].z = ft_atoi(points_height[j]);
-		if (ft_atoi(points_height[j]) > 5)
-        	set_color(var, points_height[j], i, j, 0x0000FF);
-		else
-        	set_color(var, points_height[j], i, j, 0xFF0000);
+		set_color(var, i, j, points_height[j]);
         var->map.map_points[i][j].valid_point = 1;
     }
     while (j < var->map.map_width)

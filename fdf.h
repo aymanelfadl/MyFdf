@@ -158,7 +158,7 @@ void    map_dimension(t_vars *var);
 void    map_allocatation(t_vars *var);
 int     ft_atoi_base(char *str, int base);
 void	add_points(t_vars *var);
-void	set_color(t_vars *var, char *colors, int x, int y, int defualt_color);
+void	set_color(t_vars *var, int x, int y, char *defualt_color);
 void    map_init(t_vars *vars);
 
 
