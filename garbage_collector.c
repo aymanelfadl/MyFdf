@@ -14,18 +14,20 @@ void *my_malloc(size_t size, t_allocation **head) {
         free(ptr);
         return (NULL);
     }
-
     new_alloc->ptr = ptr;
     new_alloc->next = *head;
     *head = new_alloc;
-
     return ptr;
 }
 
 void free_all(t_allocation **head) {
-    t_allocation *current = *head;
+    t_allocation *current;
+    
+    current = *head;
     while (current) {
-        t_allocation *next = current->next;
+        t_allocation *next;
+        
+        next = current->next;
         free(current->ptr);
         free(current);
         current = next;
