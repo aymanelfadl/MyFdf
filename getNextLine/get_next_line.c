@@ -77,9 +77,9 @@ char	*get_full_line(int fd, char *rbuf)
 
 char	*get_next_line(int fd)
 {
-	static char* buffer;
-	char		*line;
-	char		*remaining;
+	static char *buffer;
+	char *line;
+	char *remaining;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX)
 		return (NULL);

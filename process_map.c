@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   process_map.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aelfadl <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/03 11:44:58 by aelfadl           #+#    #+#             */
+/*   Updated: 2025/02/03 11:44:59 by aelfadl          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 void	ft_gnl_err(int fd, char *line, char *str)
 {
 	free(line);
 	line = get_next_line(fd);
-	while(line)
+	while (line)
 	{
 		free(line);
 		line = get_next_line(fd);
@@ -21,36 +33,37 @@ int	ft_isspace(char c)
 	return (0);
 }
 
-int valid_line(char *line)
+int	valid_line(char *line)
 {
-    char *n_line;
-    int i;
+	char	*n_line;
+	int		i;
 
-    n_line = ft_strchr(line, '\n');
-    if (n_line)
-        *n_line = '\0';
-    i = 0;
-    while (line[i])
-    {
-        while (ft_isspace(line[i]) || line[i] == '-')
-            i++;
-        if (!line[i])
-            break;
-        if (!ft_isdigit(line[i]) && line[i] != ',' && !ft_strchr(",xabcdefABCDEF", line[i]))
-            return (0);
-        i++;
-    }
-    return (1);
+	n_line = ft_strchr(line, '\n');
+	if (n_line)
+		*n_line = '\0';
+	i = 0;
+	while (line[i])
+	{
+		while (ft_isspace(line[i]) || line[i] == '-')
+			i++;
+		if (!line[i])
+			break ;
+		if (!ft_isdigit(line[i]) && line[i] != ','
+			&& !ft_strchr(",xabcdefABCDEF", line[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
-int		count_points(char *s, char c)
+int	count_points(char *s, char c)
 {
 	size_t	nwords;
 
 	nwords = 0;
 	while (*s)
 	{
-		while (*s == c) 
+		while (*s == c)
 			s++;
 		if (*s)
 		{
@@ -61,4 +74,3 @@ int		count_points(char *s, char c)
 	}
 	return (nwords);
 }
-

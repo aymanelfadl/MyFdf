@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_color.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aelfadl <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/03 11:45:35 by aelfadl           #+#    #+#             */
+/*   Updated: 2025/02/03 11:45:36 by aelfadl          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 int	interpolate_color(int color1, int color2, float fraction)
@@ -16,8 +28,8 @@ int	interpolate_color(int color1, int color2, float fraction)
 
 void	set_color(t_vars *var, int x, int y, char *colors)
 {
-	char	**color;
-	
+	char **color;
+
 	color = ft_split((const char *)colors, ',');
 	if (color[1])
 	{
@@ -27,11 +39,11 @@ void	set_color(t_vars *var, int x, int y, char *colors)
 	else
 	{
 		if (ft_atoi(color[0]) <= -20)
-			var->map.map_points[x][y].color = 0x001B44; // Deep Blue 
+			var->map.map_points[x][y].color = 0x001B44; // Deep Blue
 		else if (ft_atoi(color[0]) <= 0)
-			var->map.map_points[x][y].color = 0x0088CC; // Cyan Blue 
+			var->map.map_points[x][y].color = 0x0088CC; // Cyan Blue
 		else if (ft_atoi(color[0]) <= 20)
-			var->map.map_points[x][y].color = 0x22AA22; // Green 
+			var->map.map_points[x][y].color = 0x22AA22; // Green
 		else if (ft_atoi(color[0]) <= 50)
 			var->map.map_points[x][y].color = 0xFFD700; // Yellow
 		else if (ft_atoi(color[0]) <= 100)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aelfadl <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/03 11:42:56 by aelfadl           #+#    #+#             */
+/*   Updated: 2025/02/03 11:42:57 by aelfadl          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 static int	is_space(char c)
@@ -25,9 +37,9 @@ static int	get_index(char c, int base)
 
 int	ft_atoi_base(char *str, int base)
 {
-	int	sign;
-	int	i;
-	int	result;
+	int sign;
+	int i;
+	int result;
 
 	i = 0;
 	result = 0;

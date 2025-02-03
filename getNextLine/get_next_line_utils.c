@@ -78,7 +78,7 @@ char	*my_strjoin(char *s1, char *s2)
 
 char	*my_strchr(char *str, int c)
 {
-	int	i;
+	int i;
 
 	if (!str)
 		return (NULL);

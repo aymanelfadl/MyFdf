@@ -22,9 +22,9 @@ static int	ft_isspace(char c)
 
 int	ft_atoi(const char *str)
 {
-	int		i;
-	int		sum;
-	int		si;
+	int	i;
+	int	sum;
+	int	si;
 
 	si = 1;
 	sum = 0;

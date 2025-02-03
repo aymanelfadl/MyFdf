@@ -1,6 +1,5 @@
 {
-    "files.associations": {
-        "fdf.h": "c",
-        "fcntl.h": "c"
-    }
+    "[c]": {
+        "editor.defaultFormatter": "keyhr.42-c-format"
+    },
 }

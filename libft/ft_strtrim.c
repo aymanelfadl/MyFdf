@@ -48,9 +48,9 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (NULL);
 	if (!set)
 		return ((char *)s1);
-	start = ft_calstart (s1, set);
-	end = ft_calend (s1, set, start);
-	ptr = (char *) malloc ((ft_strlen(s1) - start - end + 1) * sizeof(char));
+	start = ft_calstart(s1, set);
+	end = ft_calend(s1, set, start);
+	ptr = (char *)malloc((ft_strlen(s1) - start - end + 1) * sizeof(char));
 	if (!ptr)
 		return (NULL);
 	i = 0;
