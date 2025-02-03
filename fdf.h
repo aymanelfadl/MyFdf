@@ -12,9 +12,9 @@
 # include <fcntl.h>
 
 
-# define WINDOW_WIDTH 600
-# define WINDOW_HEIGHT 600
-#define M_PI 3.14159265358979323846
+# define WINDOW_WIDTH 1600
+# define WINDOW_HEIGHT 1600
+
 
 // keyscode
 # define KEY_W 119
@@ -35,9 +35,6 @@
 
 
 # define KEY_ESC 65307
-
-
-
 
 /*
     Allocation information

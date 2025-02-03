@@ -36,7 +36,7 @@ int valid_line(char *line)
             i++;
         if (!line[i])
             break;
-        if (!ft_isdigit(line[i]) && line[i] != ',' && !ft_strchr("xabcdefABCDEF", line[i]))
+        if (!ft_isdigit(line[i]) && line[i] != ',' && !ft_strchr(",xabcdefABCDEF", line[i]))
             return (0);
         i++;
     }

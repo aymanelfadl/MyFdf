@@ -29,7 +29,6 @@ void    set_default_img(t_vars *vars)
     move_to_center(vars);
 }
 
-
 void	iso_point(t_vars *vars)
 {
 	apply_rotation(vars, 0.785398, 'z');
