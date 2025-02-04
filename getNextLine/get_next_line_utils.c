@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aelfadl <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/04 14:59:27 by aelfadl           #+#    #+#             */
+/*   Updated: 2025/02/04 14:59:30 by aelfadl          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 void	*my_calloc(size_t num_elements, size_t element_size)
@@ -78,7 +90,7 @@ char	*my_strjoin(char *s1, char *s2)
 
 char	*my_strchr(char *str, int c)
 {
-	int i;
+	int	i;
 
 	if (!str)
 		return (NULL);

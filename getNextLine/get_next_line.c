@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aelfadl <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/04 14:58:58 by aelfadl           #+#    #+#             */
+/*   Updated: 2025/02/04 14:59:01 by aelfadl          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 void	my_free(char **buffer)
@@ -77,9 +89,9 @@ char	*get_full_line(int fd, char *rbuf)
 
 char	*get_next_line(int fd)
 {
-	static char *buffer;
-	char *line;
-	char *remaining;
+	static char	*buffer;
+	char		*line;
+	char		*remaining;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX)
 		return (NULL);
