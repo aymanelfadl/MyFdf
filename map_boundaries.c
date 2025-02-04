@@ -95,8 +95,8 @@ void	set_height_boundaries(t_vars *vars)
 
 float	calculate_height_factor(t_vars *vars)
 {
-	float height_range;
-	float height_factor;
+	float	height_range;
+	float	height_factor;
 
 	set_height_boundaries(vars);
 	height_range = vars->map.map_range.max_z - vars->map.map_range.min_z;

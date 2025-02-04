@@ -28,7 +28,8 @@ void	apply_parallel_projection(t_vars *vars)
 
 void	parallel_projection(t_vars *vars)
 {
-	static int view;
+	static int	view;
+
 	mlx_destroy_image(vars->mlx_info.mlx_connection, vars->img.img);
 	img_init(vars);
 	if (vars->head)

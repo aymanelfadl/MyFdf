@@ -37,9 +37,9 @@ static int	get_index(char c, int base)
 
 int	ft_atoi_base(char *str, int base)
 {
-	int sign;
-	int i;
-	int result;
+	int	sign;
+	int	i;
+	int	result;
 
 	i = 0;
 	result = 0;

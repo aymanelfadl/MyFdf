@@ -40,7 +40,7 @@ void	*my_malloc(size_t size, t_allocation **head)
 void	free_all(t_allocation **head)
 {
 	t_allocation	*current;
-		t_allocation *next;
+	t_allocation	*next;
 
 	current = *head;
 	while (current)

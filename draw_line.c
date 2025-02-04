@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "fdf.h"
 
 void	ft_put_pixel(t_vars *vars, int x, int y, int color)

@@ -61,12 +61,11 @@ void	rotate_point(t_point *point, float angle, char axis)
 
 void	apply_rotation(t_vars *vars, float angle, char axis)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	if (axis != 'x' && axis != 'y' && axis != 'z')
 		return ;
-
 	i = -1;
 	while (++i < vars->map.map_height)
 	{

@@ -28,7 +28,7 @@ int	interpolate_color(int color1, int color2, float fraction)
 
 void	set_color(t_vars *var, int x, int y, char *colors)
 {
-	char **color;
+	char	**color;
 
 	color = ft_split((const char *)colors, ',');
 	if (color[1])
