@@ -39,17 +39,17 @@ void	set_color(t_vars *var, int x, int y, char *colors)
 	else
 	{
 		if (ft_atoi(color[0]) <= -20)
-			var->map.map_points[x][y].color = 0x001B44; // Deep Blue
+			var->map.map_points[x][y].color = 0x001B44;
 		else if (ft_atoi(color[0]) <= 0)
-			var->map.map_points[x][y].color = 0x0088CC; // Cyan Blue
+			var->map.map_points[x][y].color = 0x0088CC;
 		else if (ft_atoi(color[0]) <= 20)
-			var->map.map_points[x][y].color = 0x22AA22; // Green
+			var->map.map_points[x][y].color = 0x22AA22;
 		else if (ft_atoi(color[0]) <= 50)
-			var->map.map_points[x][y].color = 0xFFD700; // Yellow
+			var->map.map_points[x][y].color = 0xFFD700;
 		else if (ft_atoi(color[0]) <= 100)
-			var->map.map_points[x][y].color = 0x8B4513; // Brown
+			var->map.map_points[x][y].color = 0x8B4513;
 		else
-			var->map.map_points[x][y].color = 0xFFFFFF; // White
+			var->map.map_points[x][y].color = 0xFFFFFF;
 	}
 	free(color[0]);
 	free(color);

@@ -18,6 +18,7 @@ void	map_init(t_vars *vars)
 	map_allocatation(vars);
 	add_points(vars);
 }
+
 void	window_init(t_vars *vars)
 {
 	vars->mlx_info.mlx_window_height = WINDOW_HEIGHT;
@@ -27,6 +28,7 @@ void	window_init(t_vars *vars)
 			vars->mlx_info.mlx_window_height, vars->mlx_info.mlx_window_width,
 			"FDF PROJECT");
 }
+
 void	img_init(t_vars *vars)
 {
 	vars->img.img = mlx_new_image(vars->mlx_info.mlx_connection,

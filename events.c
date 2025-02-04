@@ -51,6 +51,7 @@ void	rotate_img(int keycode, t_vars *vars)
 	mlx_put_image_to_window(vars->mlx_info.mlx_connection,
 		vars->mlx_info.mlx_window, vars->img.img, 0, 0);
 }
+
 void	re_render_img(t_vars *vars)
 {
 	mlx_destroy_image(vars->mlx_info.mlx_connection, vars->img.img);

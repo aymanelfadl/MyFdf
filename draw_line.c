@@ -25,75 +25,76 @@ void	ft_put_pixel(t_vars *vars, int x, int y, int color)
 	}
 }
 
-void	ft_lower_slope(t_vars *vars, int dx, int dy, t_point *start_point,
+void	ft_lower_slope(t_vars *vars, int *d, t_point *start_point,
 		t_point *end_point)
 {
 	int		i;
 	int		p;
 	t_point	tmp_point;
-	float	fraction;
 
 	tmp_point = *start_point;
 	i = 0;
-	p = 2 * dy - dx;
+	p = 2 * d[2] - d[1];
 	ft_put_pixel(vars, tmp_point.x, tmp_point.y, tmp_point.color);
-	while (i < dx)
+	while (i < d[1])
 	{
-		fraction = (float)i / dx;
 		tmp_point.x += step_x(start_point, end_point);
 		if (p < 0)
-			p = p + 2 * dy;
+			p = p + 2 * d[2];
 		else
 		{
 			tmp_point.y += step_y(start_point, end_point);
-			p = p + 2 * dy - 2 * dx;
+			p = p + 2 * d[2] - 2 * d[1];
 		}
 		ft_put_pixel(vars, tmp_point.x, tmp_point.y,
-			interpolate_color(start_point->color, end_point->color, fraction));
+			interpolate_color(start_point->color, end_point->color, ((float)i
+					/ d[1])));
 		i++;
 	}
 }
 
-void	ft_higher_slope(t_vars *vars, int dx, int dy, t_point *start_point,
+void	ft_higher_slope(t_vars *vars, int *d, t_point *start_point,
 		t_point *end_point)
 {
 	int		i;
 	int		p;
 	t_point	tmp_point;
-	float	fraction;
 
 	tmp_point = *start_point;
 	i = 0;
-	p = 2 * dx - dy;
+	p = 2 * d[1] - d[2];
 	ft_put_pixel(vars, tmp_point.x, tmp_point.y, tmp_point.color);
-	while (i < dy)
+	while (i < d[2])
 	{
-		fraction = (float)i / dy;
 		tmp_point.y += step_y(start_point, end_point);
 		if (p < 0)
-			p = p + 2 * dx;
+			p = p + 2 * d[1];
 		else
 		{
 			tmp_point.x += step_x(start_point, end_point);
-			p = p + 2 * dx - 2 * dy;
+			p = p + 2 * d[1] - 2 * d[2];
 		}
 		ft_put_pixel(vars, tmp_point.x, tmp_point.y,
-			interpolate_color(start_point->color, end_point->color, fraction));
+			interpolate_color(start_point->color, end_point->color, ((float)i
+					/ d[2])));
 		i++;
 	}
 }
 
+// d[1] == dx AND d[2] == dy just cuase of 42 norms too many args;
 void	ft_draw_line(t_vars *vars, t_point *p1, t_point *p2)
 {
-	int	dx;
-	int	dy;
+	int	*d;
 
-	dx = abs((int)p2->x - (int)p1->x);
-	dy = abs((int)p2->y - (int)p1->y);
-	if (dx > dy)
-		ft_lower_slope(vars, dx, dy, p1, p2);
+	d = my_malloc((sizeof(int) * 2), &vars->head);
+	if (!d)
+		free_all(&vars->head);
+	d[1] = abs((int)p2->x - (int)p1->x);
+	d[2] = abs((int)p2->y - (int)p1->y);
+	if (d[1] > d[2])
+		ft_lower_slope(vars, d, p1, p2);
 	else
-		ft_higher_slope(vars, dx, dy, p1, p2);
+		ft_higher_slope(vars, d, p1, p2);
 }
 
 void	draw_img(t_vars *vars)
@@ -114,7 +115,7 @@ void	draw_img(t_vars *vars)
 					ft_draw_line(vars, &vars->map.map_points[i][j],
 						&vars->map.map_points[i][j + 1]);
 				if (i + 1 < vars->map.map_height && vars->map.map_points[i
-					+ 1][j].valid_point)
+						+ 1][j].valid_point)
 					ft_draw_line(vars, &vars->map.map_points[i][j],
 						&vars->map.map_points[i + 1][j]);
 			}
