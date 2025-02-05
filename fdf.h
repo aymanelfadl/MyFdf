@@ -22,8 +22,8 @@
 # include <stdlib.h>
 # include <string.h>
 
-# define WINDOW_WIDTH 1600
-# define WINDOW_HEIGHT 1600
+# define WINDOW_WIDTH 600
+# define WINDOW_HEIGHT 600
 
 // keyscode
 # define KEY_W 119
