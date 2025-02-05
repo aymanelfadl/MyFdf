@@ -1,5 +1,5 @@
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -no-pie
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
 
 NAME = fdf
 
@@ -21,10 +21,10 @@ MLX = $(MINILIBXDIR)/libmlx.a
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT) $(GNL) $(MLX) $(HEADER)
+$(NAME): $(OBJS) $(LIBFT) $(GNL) $(MLX) 
 	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFTDIR) -lft -L$(GETNEXTLINEDIR) -lgnl -L$(MINILIBXDIR) -lmlx -lXext -lX11 -lm -o $(NAME)
 
-%.o: %.c
+%.o: %.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT):

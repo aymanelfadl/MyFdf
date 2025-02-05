@@ -34,21 +34,21 @@ void	ft_lower_slope(t_vars *vars, int *d, t_point *start_point,
 
 	tmp_point = *start_point;
 	i = 0;
-	p = 2 * d[2] - d[1];
+	p = 2 * d[1] - d[0];
 	ft_put_pixel(vars, tmp_point.x, tmp_point.y, tmp_point.color);
-	while (i < d[1])
+	while (i < d[0])
 	{
 		tmp_point.x += step_x(start_point, end_point);
 		if (p < 0)
-			p = p + 2 * d[2];
+			p = p + 2 * d[1];
 		else
 		{
 			tmp_point.y += step_y(start_point, end_point);
-			p = p + 2 * d[2] - 2 * d[1];
+			p = p + 2 * d[1] - 2 * d[0];
 		}
 		ft_put_pixel(vars, tmp_point.x, tmp_point.y,
 			interpolate_color(start_point->color, end_point->color, ((float)i
-					/ d[1])));
+					/ d[0])));
 		i++;
 	}
 }
@@ -62,36 +62,38 @@ void	ft_higher_slope(t_vars *vars, int *d, t_point *start_point,
 
 	tmp_point = *start_point;
 	i = 0;
-	p = 2 * d[1] - d[2];
+	p = 2 * d[0] - d[1];
 	ft_put_pixel(vars, tmp_point.x, tmp_point.y, tmp_point.color);
-	while (i < d[2])
+	while (i < d[1])
 	{
 		tmp_point.y += step_y(start_point, end_point);
 		if (p < 0)
-			p = p + 2 * d[1];
+			p = p + 2 * d[0];
 		else
 		{
 			tmp_point.x += step_x(start_point, end_point);
-			p = p + 2 * d[1] - 2 * d[2];
+			p = p + 2 * d[0] - 2 * d[1];
 		}
 		ft_put_pixel(vars, tmp_point.x, tmp_point.y,
 			interpolate_color(start_point->color, end_point->color, ((float)i
-					/ d[2])));
+					/ d[1])));
 		i++;
 	}
 }
 
-// d[1] == dx AND d[2] == dy just cuase of 42 norms too many args;
+// d[0] == dx AND d[1] == dy just cuase of 42 norms too many args;
 void	ft_draw_line(t_vars *vars, t_point *p1, t_point *p2)
 {
 	int	*d;
-
+	
+	if (!vars || !p1 || !p2)
+        return;
 	d = my_malloc((sizeof(int) * 2), &vars->head);
 	if (!d)
 		free_all(&vars->head);
-	d[1] = abs((int)p2->x - (int)p1->x);
-	d[2] = abs((int)p2->y - (int)p1->y);
-	if (d[1] > d[2])
+	d[0] = abs((int)p2->x - (int)p1->x);
+	d[1] = abs((int)p2->y - (int)p1->y);
+	if (d[0] > d[1])
 		ft_lower_slope(vars, d, p1, p2);
 	else
 		ft_higher_slope(vars, d, p1, p2);
