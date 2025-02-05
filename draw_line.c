@@ -85,9 +85,9 @@ void	ft_higher_slope(t_vars *vars, int *d, t_point *start_point,
 void	ft_draw_line(t_vars *vars, t_point *p1, t_point *p2)
 {
 	int	*d;
-	
+
 	if (!vars || !p1 || !p2)
-        return;
+		return ;
 	d = my_malloc((sizeof(int) * 2), &vars->head);
 	if (!d)
 		free_all(&vars->head);
