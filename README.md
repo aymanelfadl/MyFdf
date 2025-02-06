@@ -1,40 +1,14 @@
 # 📌 FDF Project Documentation  
 
 ## 📜 Table of Contents  
-1. 🚀 Moving the Map  
-2. 🔍 Scaling the Map (Zooming)  
-3. 🔄 Rotating the Map (3D Rotation)  
-4. 🖼️ Isometric Projection  
-5. 📌 MLX Library (MiniLibX)  
-6. 🖼️ Bitmap (Image Basics)  
-7. 🖥️ Resolution (Pixel Density)  
-8. 📌 X-Window System  
+1. 🔄 Rotating the Map (3D Rotation)  
+2. 🖼️ Isometric Projection  
+3. 📌 MLX Library (MiniLibX)  
+4. 🖼️ Bitmap (Image Basics)  
+5. 🖥️ Resolution (Pixel Density)  
+6. 📌 X-Window System  
 
 ---
-
-## 🚀 Moving the Map  
-1. **Find the Center:**  
-   - Get the **smallest and biggest coordinates** of the map.  
-   - Move the map so that the smallest coordinate is at **(0,0)**.  
-   - Shift the map to the **center of the window** using:  
-     Center = (Window Size / 2) - Min Coordinate  
-
-2. **Move the Map with Keyboard:**  
-   - Add an **offset** value to move the map **left, right, up, or down**.  
-
----
-
-## 🔍 Scaling the Map (Zooming)  
-1. **Find the Biggest Size of the Map:**  
-   - Use:  
-     max_size = map width × map height  
-   - Scale the map so it fits inside the window.  
-
-2. **Adjusting Height (Z-axis):**  
-   - Scale the **Z-axis** based on the width of the map.  
-
----
-
 ## 🔄 Rotating the Map (3D Rotation)  
 We use **math formulas** to rotate the map around the **X, Y, and Z axes**.
 
