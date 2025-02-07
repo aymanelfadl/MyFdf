@@ -11,7 +11,7 @@ MINILIBXDIR = minilibx-linux
 
 SRCS = main.c draw_line.c garbage_collector.c get_points.c map_boundaries.c \
         events.c map_scale.c mlx_init.c parallel.c process_map.c rotation.c \
-        img_zoom.c ft_atoi_base.c set_color.c
+        img_zoom.c ft_atoi_base.c set_color.c map_height.c
 
 OBJS = $(SRCS:.c=.o)
 

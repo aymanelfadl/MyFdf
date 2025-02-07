@@ -35,7 +35,7 @@ void	parallel_projection(t_vars *vars)
 	if (vars->head)
 		free_all(&vars->head);
 	map_init(vars);
-	apply_scale(vars);
+	scale_init(vars);
 	vars->view = ++view % 5;
 	apply_parallel_projection(vars);
 	move_to_center(vars);

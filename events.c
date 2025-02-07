@@ -58,9 +58,11 @@ void	re_render_img(t_vars *vars)
 	if (vars->head)
 		free_all(&vars->head);
 	map_init(vars);
-	set_default_img(vars);
 	vars->map.map_offset_x = 0;
 	vars->map.map_offset_y = 0;
+	img_init(vars);
+	scale_init(vars);
+	iso_point(vars);
 	move_to_center(vars);
 	draw_img(vars);
 	mlx_put_image_to_window(vars->mlx_info.mlx_connection,

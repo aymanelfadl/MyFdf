@@ -43,6 +43,26 @@ float	right_scale(t_vars *vars)
 		return (y_scale);
 }
 
+void	scale_init(t_vars *vars)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < vars->map.map_height)
+	{
+		j = 0;
+		while (j < vars->map.map_width)
+		{
+			vars->map.map_points[i][j].x *= vars->map.map_scale;
+			vars->map.map_points[i][j].y *= vars->map.map_scale;
+			vars->map.map_points[i][j].z *= vars->map.map_scale;
+			j++;
+		}
+		i++;
+	}
+}
+
 void	apply_scale(t_vars *vars)
 {
 	int		i;

@@ -14,11 +14,9 @@
 
 void	zoom_in(t_vars *vars)
 {
-	int		i;
-	int		j;
-	float	hight_factor;
+	int	i;
+	int	j;
 
-	hight_factor = calculate_height_factor(vars);
 	i = 0;
 	while (i < vars->map.map_height)
 	{
@@ -27,7 +25,7 @@ void	zoom_in(t_vars *vars)
 		{
 			vars->map.map_points[i][j].x *= 1.1;
 			vars->map.map_points[i][j].y *= 1.1;
-			vars->map.map_points[i][j].z *= (1.1 * hight_factor);
+			vars->map.map_points[i][j].z *= 1.1;
 			j++;
 		}
 		i++;
@@ -36,11 +34,9 @@ void	zoom_in(t_vars *vars)
 
 void	zoom_out(t_vars *vars)
 {
-	int		i;
-	int		j;
-	float	hight_factor;
+	int	i;
+	int	j;
 
-	hight_factor = calculate_height_factor(vars);
 	i = 0;
 	while (i < vars->map.map_height)
 	{
@@ -49,7 +45,7 @@ void	zoom_out(t_vars *vars)
 		{
 			vars->map.map_points[i][j].x *= 0.9;
 			vars->map.map_points[i][j].y *= 0.9;
-			vars->map.map_points[i][j].z *= (0.9 * hight_factor);
+			vars->map.map_points[i][j].z *= 0.9;
 			j++;
 		}
 		i++;

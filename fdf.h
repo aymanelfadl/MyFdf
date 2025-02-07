@@ -146,8 +146,6 @@ int						step_y(t_point *start_point, t_point *end_point);
 void					draw_img(t_vars *vars);
 float					right_scale(t_vars *vars);
 void					set_boundaries(t_vars *vars);
-float					calculate_height_factor(t_vars *vars);
-void					set_height_boundaries(t_vars *vars);
 void					move_to_center(t_vars *vars);
 void					apply_scale(t_vars *vars);
 void					apply_rotation(t_vars *vars, float angle, char axis);
@@ -156,6 +154,8 @@ void					apply_scale(t_vars *vars);
 int						interpolate_color(int color1, int color2,
 							float fraction);
 void					apply_parallel_projection(t_vars *vars);
+void					scale_init(t_vars *vars);
+float					calculate_height_factor(t_vars *vars);
 
 /* Parsing map Functions */
 void					ft_gnl_err(int fd, char *line, char *str);
