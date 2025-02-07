@@ -12,7 +12,6 @@
 
 #include "fdf.h"
 
-
 void	init_vars(t_vars *vars)
 {
 	vars->map.map_name = NULL;
@@ -41,25 +40,25 @@ void	init_vars(t_vars *vars)
 	vars->view = 0;
 }
 
-void points_init(t_vars *var)
+void	points_init(t_vars *var)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = 0;
-    while (i < var->map.map_height)
-    {
-        j = 0;
-        while (j < var->map.map_width)
-        {
-            var->map.map_points[i][j].x = 0;
-            var->map.map_points[i][j].y = 0;
-            var->map.map_points[i][j].z = 0;
-            var->map.map_points[i][j].valid_point = 0;
-            j++;
-        }
-        i++;
-    }
+	i = 0;
+	while (i < var->map.map_height)
+	{
+		j = 0;
+		while (j < var->map.map_width)
+		{
+			var->map.map_points[i][j].x = 0;
+			var->map.map_points[i][j].y = 0;
+			var->map.map_points[i][j].z = 0;
+			var->map.map_points[i][j].valid_point = 0;
+			j++;
+		}
+		i++;
+	}
 }
 
 int	interpolate_color(int color1, int color2, float fraction)
