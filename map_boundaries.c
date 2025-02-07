@@ -19,6 +19,9 @@ void	set_boundaries(t_vars *vars)
 	t_map_range	range;
 
 	i = -1;
+	if (!vars->map.map_points || vars->map.map_height <= 0 || vars->map.map_width <= 0)
+        return;
+	range = vars->map.map_range;
 	range.min_x = vars->map.map_points[0][0].x;
 	range.max_x = vars->map.map_points[0][0].x;
 	range.min_y = vars->map.map_points[0][0].y;
@@ -76,6 +79,9 @@ void	set_height_boundaries(t_vars *vars)
 	t_map_range	range;
 
 	i = -1;
+	if (!vars->map.map_points || vars->map.map_height <= 0 || vars->map.map_width <= 0)
+        return;
+	range = vars->map.map_range;
 	range.min_z = vars->map.map_points[0][0].z;
 	range.max_z = vars->map.map_points[0][0].z;
 	while (++i < vars->map.map_height)

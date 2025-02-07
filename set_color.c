@@ -12,6 +12,56 @@
 
 #include "fdf.h"
 
+
+void	init_vars(t_vars *vars)
+{
+	vars->map.map_name = NULL;
+	vars->map.map_height = 0;
+	vars->map.map_width = 0;
+	vars->map.map_scale = 1;
+	vars->map.map_offset_x = 0;
+	vars->map.map_offset_y = 0;
+	vars->map.map_points = NULL;
+	vars->map.map_range.max_x = INT_MIN;
+	vars->map.map_range.min_x = INT_MAX;
+	vars->map.map_range.max_y = INT_MIN;
+	vars->map.map_range.min_y = INT_MAX;
+	vars->map.map_range.max_z = INT_MIN;
+	vars->map.map_range.min_z = INT_MAX;
+	vars->img.img = NULL;
+	vars->img.addr = NULL;
+	vars->img.bits_per_pixel = 0;
+	vars->img.line_length = 0;
+	vars->img.endian = 0;
+	vars->mlx_info.mlx_connection = NULL;
+	vars->mlx_info.mlx_window = NULL;
+	vars->mlx_info.mlx_window_height = 0;
+	vars->mlx_info.mlx_window_width = 0;
+	vars->head = NULL;
+	vars->view = 0;
+}
+
+void points_init(t_vars *var)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while (i < var->map.map_height)
+    {
+        j = 0;
+        while (j < var->map.map_width)
+        {
+            var->map.map_points[i][j].x = 0;
+            var->map.map_points[i][j].y = 0;
+            var->map.map_points[i][j].z = 0;
+            var->map.map_points[i][j].valid_point = 0;
+            j++;
+        }
+        i++;
+    }
+}
+
 int	interpolate_color(int color1, int color2, float fraction)
 {
 	int	red;

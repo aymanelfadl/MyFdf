@@ -31,6 +31,15 @@ void	*my_malloc(size_t size, t_allocation **head)
 	*head = new_alloc;
 	return (ptr);
 }
+void map_allocation_error(t_vars *var, int error_type)
+{
+    free_all(&var->head);
+    if (error_type == 1)
+        ft_printf("Err: Can't Allocat Height");
+    else
+        ft_printf("Err: Can't Allocat Width");
+    exit(EXIT_FAILURE);
+}
 
 void	free_all(t_allocation **head)
 {
@@ -46,6 +55,16 @@ void	free_all(t_allocation **head)
 		current = next;
 	}
 	*head = NULL;
+}
+
+void free_points_height(char **points_height)
+{
+    int j;
+
+    j = -1;
+    while (points_height[++j])
+        free(points_height[j]);
+    free(points_height);
 }
 
 int	clean_mlx_infos(t_vars *vars)

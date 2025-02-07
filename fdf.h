@@ -22,8 +22,8 @@
 # include <stdlib.h>
 # include <string.h>
 
-# define WINDOW_WIDTH 600
-# define WINDOW_HEIGHT 600
+# define WINDOW_WIDTH 1800
+# define WINDOW_HEIGHT 1800
 
 // keyscode
 # define KEY_W 119
@@ -128,6 +128,8 @@ typedef struct s_vars
 /* Window Functions */
 void					window_init(t_vars *vars);
 void					set_default_img(t_vars *vars);
+void					init_vars(t_vars *vars);
+void					points_init(t_vars *var);
 
 /*  Hooks Events    */
 int						handle_movement(int keycode, t_vars *vars);
@@ -172,5 +174,7 @@ void					map_init(t_vars *vars);
 void					free_all(t_allocation **head);
 void					*my_malloc(size_t size, t_allocation **head);
 int						clean_mlx_infos(t_vars *vars);
+void					map_allocation_error(t_vars *var, int error_type);
+void					free_points_height(char **points_height);
 
 #endif
